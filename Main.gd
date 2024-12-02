@@ -1,4 +1,4 @@
 extends Node
 
 func _on_Button_pressed():
-	get_tree().change_scene("res://Levels/TestLevel.tscn")
+	get_tree().change_scene("res://Levels/LabLevel.tscn")
