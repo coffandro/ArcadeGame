@@ -1,34 +1,53 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Art/Players/Bunny.png" type="Texture" id=2]
+[ext_resource path="res://Art/Players/BunnyRun2.png" type="Texture" id=3]
+[ext_resource path="res://Art/Players/BunnyRun3.png" type="Texture" id=4]
+[ext_resource path="res://Art/Players/BunnyRun1.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Run",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 64, 64 )
+extents = Vector2( 31.3305, 56 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 speed = Vector2( 400, 1500 )
 gravity = 60
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-
 [node name="JumpCooldown" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
-[node name="CenterRaycast" type="RayCast2D" parent="."]
-position = Vector2( 0, -64 )
-cast_to = Vector2( 0, -100 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1, -13 )
+scale = Vector2( 0.25, 0.25 )
+frames = SubResource( 9 )
+animation = "Idle"
+speed_scale = 1.5
+centered = false
 
-[node name="LeftRaycast" type="RayCast2D" parent="."]
-position = Vector2( -54, -64 )
-cast_to = Vector2( 0, -100 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 99.6695, 123 )
+shape = SubResource( 1 )
 
-[node name="RightRaycast" type="RayCast2D" parent="."]
-position = Vector2( 54, -64 )
-cast_to = Vector2( 0, -100 )
+[node name="StateLabel" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="MoveLabel" type="Label" parent="."]
+margin_top = 14.0
+margin_right = 40.0
+margin_bottom = 28.0

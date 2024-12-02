@@ -83,11 +83,11 @@ transform = Transform( 0.798925, 0.102991, 0.592547, -0.335475, 0.894031, 0.2969
 [node name="Level" type="Node2D" parent="."]
 
 [node name="Player1" parent="Level" instance=ExtResource( 1 )]
-position = Vector2( 400, 500 )
+position = Vector2( 338, 368 )
 
 [node name="Player2" parent="Level" instance=ExtResource( 1 )]
-visible = false
-position = Vector2( 1520, 500 )
+position = Vector2( 1458, 368 )
+playerNumber = 2
 
 [node name="Platform" parent="Level" instance=ExtResource( 3 )]
 position = Vector2( 960, 900 )

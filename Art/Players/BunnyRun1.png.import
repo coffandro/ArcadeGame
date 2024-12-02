@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TestMap.png-9871c7418ece89d3b861ee85468c1642.stex"
+path="res://.import/BunnyRun1.png-7bb413806d0921eb819204a872623bd5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/TestMap.png"
-dest_files=[ "res://.import/TestMap.png-9871c7418ece89d3b861ee85468c1642.stex" ]
+source_file="res://Art/Players/BunnyRun1.png"
+dest_files=[ "res://.import/BunnyRun1.png-7bb413806d0921eb819204a872623bd5.stex" ]
 
 [params]
 
