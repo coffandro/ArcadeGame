@@ -1,0 +1,121 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Fonts/Maj-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Art/HealthBarBase1.svg" type="Texture" id=2]
+[ext_resource path="res://Art/MiniBarBase1.svg" type="Texture" id=3]
+[ext_resource path="res://Art/HealthBarBase2.svg" type="Texture" id=4]
+[ext_resource path="res://Art/MiniBarBase2.svg" type="Texture" id=5]
+[ext_resource path="res://Art/HealthBarTop1.svg" type="Texture" id=6]
+[ext_resource path="res://Art/MiniBarTop1.svg" type="Texture" id=7]
+[ext_resource path="res://Art/HealthBarTop2.svg" type="Texture" id=8]
+[ext_resource path="res://Art/MiniBarTop2.svg" type="Texture" id=9]
+[ext_resource path="res://Levels/healthBars.gd" type="Script" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 1 )
+
+[node name="healthBars" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -1016.0
+script = ExtResource( 10 )
+P1Health = NodePath("Player1VBox/HBoxContainer2/P1Health")
+P1Mini = NodePath("Player1VBox/HBoxContainer/P1Mini")
+P2Health = NodePath("Player2VBox/HBoxContainer2/P2Health")
+P2Mini = NodePath("Player2VBox/HBoxContainer/P2Mini")
+
+[node name="Player1VBox" type="VBoxContainer" parent="."]
+margin_right = 934.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Player1VBox"]
+margin_right = 934.0
+margin_bottom = 30.0
+
+[node name="P1Health" type="TextureProgress" parent="Player1VBox/HBoxContainer2"]
+margin_right = 890.0
+margin_bottom = 30.0
+value = 100.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 6 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Player1VBox/HBoxContainer2"]
+margin_left = 894.0
+margin_right = 934.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player1VBox"]
+margin_top = 34.0
+margin_right = 934.0
+margin_bottom = 64.0
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Player1VBox/HBoxContainer"]
+margin_right = 615.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="P1Mini" type="TextureProgress" parent="Player1VBox/HBoxContainer"]
+margin_left = 619.0
+margin_right = 934.0
+margin_bottom = 30.0
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 7 )
+
+[node name="TimeLabel" type="Label" parent="."]
+margin_left = 938.0
+margin_top = 2.0
+margin_right = 982.0
+margin_bottom = 61.0
+custom_fonts/font = SubResource( 1 )
+text = "99"
+
+[node name="Player2VBox" type="VBoxContainer" parent="."]
+margin_left = 986.0
+margin_right = 1920.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Player2VBox"]
+margin_right = 934.0
+margin_bottom = 30.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Player2VBox/HBoxContainer2"]
+margin_right = 40.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+
+[node name="P2Health" type="TextureProgress" parent="Player2VBox/HBoxContainer2"]
+margin_left = 44.0
+margin_right = 934.0
+margin_bottom = 30.0
+value = 100.0
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 8 )
+fill_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player2VBox"]
+margin_top = 34.0
+margin_right = 934.0
+margin_bottom = 64.0
+size_flags_vertical = 3
+
+[node name="TextureProgress" type="TextureProgress" parent="Player2VBox/HBoxContainer"]
+margin_right = 315.0
+margin_bottom = 30.0
+value = 100.0
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 9 )
+fill_mode = 1
+
+[node name="P2Mini" type="MarginContainer" parent="Player2VBox/HBoxContainer"]
+margin_left = 319.0
+margin_right = 934.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

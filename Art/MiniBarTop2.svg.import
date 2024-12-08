@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TestMap.png-af18fb4beedfadf4a6011c88037131b3.stex"
+path="res://.import/MiniBarTop2.svg-a27853a9596beebba61d70936d048e62.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/TestMap.png"
-dest_files=[ "res://.import/TestMap.png-af18fb4beedfadf4a6011c88037131b3.stex" ]
+source_file="res://Art/MiniBarTop2.svg"
+dest_files=[ "res://.import/MiniBarTop2.svg-a27853a9596beebba61d70936d048e62.stex" ]
 
 [params]
 

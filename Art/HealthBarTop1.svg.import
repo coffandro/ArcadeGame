@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bunny.png-7deddd8fa77db9f324782beec7cc43f6.stex"
+path="res://.import/HealthBarTop1.svg-275d34f58245ad9710b3f73f6c099c93.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Players/Bunny.png"
-dest_files=[ "res://.import/Bunny.png-7deddd8fa77db9f324782beec7cc43f6.stex" ]
+source_file="res://Art/HealthBarTop1.svg"
+dest_files=[ "res://.import/HealthBarTop1.svg-275d34f58245ad9710b3f73f6c099c93.stex" ]
 
 [params]
 
@@ -27,7 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
-process/invert_color=false
+process/invert_color=true
 process/normal_map_invert_y=false
 stream=false
 size_limit=0

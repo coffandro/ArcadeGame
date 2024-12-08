@@ -576,6 +576,10 @@ config/name="ArcadeGame"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+LevelState="*res://LevelState.gd"
+
 [display]
 
 window/size/width=1920
@@ -600,6 +604,12 @@ move_right_p1={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
+ ]
+}
+move_down_p1={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
  ]
 }
 jump_p1={
@@ -638,6 +648,12 @@ move_right_p2={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":0,"axis_value":1.0,"script":null)
  ]
 }
+move_down_p2={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":1,"axis_value":1.0,"script":null)
+ ]
+}
 jump_p2={
 "deadzone": 0.5,
 "events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
@@ -662,3 +678,10 @@ attack3_p2={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Everything"
+2d_physics/layer_2="Player1"
+2d_physics/layer_3="Player2"
+2d_physics/layer_4="DroppablePlatforms"

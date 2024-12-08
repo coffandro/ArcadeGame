@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TestMap.png-af18fb4beedfadf4a6011c88037131b3.stex"
+path="res://.import/Bunny.png-857a3d5eb8732ae4ef4d23680b1c49fa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/TestMap.png"
-dest_files=[ "res://.import/TestMap.png-af18fb4beedfadf4a6011c88037131b3.stex" ]
+source_file="res://Art/Players/Bunny/Bunny.png"
+dest_files=[ "res://.import/Bunny.png-857a3d5eb8732ae4ef4d23680b1c49fa.stex" ]
 
 [params]
 
@@ -27,7 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
-process/invert_color=true
+process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0

@@ -1,53 +1,148 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://Art/Players/Bunny.png" type="Texture" id=2]
-[ext_resource path="res://Art/Players/BunnyRun2.png" type="Texture" id=3]
-[ext_resource path="res://Art/Players/BunnyRun3.png" type="Texture" id=4]
-[ext_resource path="res://Art/Players/BunnyRun1.png" type="Texture" id=5]
+[ext_resource path="res://Art/Players/Bunny/Bunny.png" type="Texture" id=2]
+[ext_resource path="res://Art/Players/Bunny/BunnyRun2.png" type="Texture" id=3]
+[ext_resource path="res://Art/Players/Bunny/BunnyRun3.png" type="Texture" id=4]
+[ext_resource path="res://Art/Players/Bunny/BunnyRun1.png" type="Texture" id=5]
+[ext_resource path="res://Art/Players/BunnyEvil/Bunny.png" type="Texture" id=6]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyRun2.png" type="Texture" id=7]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyRun3.png" type="Texture" id=8]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyRun1.png" type="Texture" id=9]
+[ext_resource path="res://Nodes/Bullet.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Falling1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "Falling2",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "Idle",
+"name": "Idle1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "Idle2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Jump1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Jump2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "Run",
+"name": "Run1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Run2",
 "speed": 5.0
 } ]
 
+[sub_resource type="Animation" id=11]
+resource_name = "Attack"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeeleeArea/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeeleeArea/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 31.3305, 56 )
+extents = Vector2( 40.5, 56 )
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 50.0
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 6
+collision_mask = 7
 script = ExtResource( 1 )
-speed = Vector2( 400, 1500 )
+speed = Vector2( 400, 1600 )
 gravity = 60
+Bullet = ExtResource( 10 )
 
 [node name="JumpCooldown" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -1, -13 )
+position = Vector2( -1, -20 )
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 9 )
-animation = "Idle"
+animation = "Falling1"
 speed_scale = 1.5
-centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Attack = SubResource( 11 )
+anims/RESET = SubResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 99.6695, 123 )
+position = Vector2( -3, 21 )
 shape = SubResource( 1 )
 
 [node name="StateLabel" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = -20.0
+margin_top = -100.0
+margin_right = 20.0
+margin_bottom = -86.0
 
 [node name="MoveLabel" type="Label" parent="."]
-margin_top = 14.0
-margin_right = 40.0
-margin_bottom = 28.0
+margin_left = -20.0
+margin_top = -96.0
+margin_right = 20.0
+margin_bottom = -82.0
+
+[node name="MeeleeArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeeleeArea"]
+position = Vector2( 55, 25 )
+shape = SubResource( 10 )
+disabled = true
+
+[node name="AttackPoint" type="Node2D" parent="."]
+position = Vector2( 110, 25 )
+
+[node name="FloorRaycast" type="RayCast2D" parent="."]
+position = Vector2( 0, 50 )
+enabled = true
+collision_mask = 8
+
+[connection signal="body_entered" from="MeeleeArea" to="." method="_on_MeeleeArea_body_entered"]

@@ -1,4 +1,7 @@
 extends Node
 
+onready var LevelState = get_node("/root/LevelState")
+
 func _on_Button_pressed():
-	get_tree().change_scene("res://Levels/LabLevel.tscn")
+	LevelState.Start()
+	get_tree().change_scene("res://Levels/Level1.tscn")
