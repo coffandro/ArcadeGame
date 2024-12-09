@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Art/Level1.png" type="Texture" id=1]
 [ext_resource path="res://Levels/healthBars.tscn" type="PackedScene" id=2]
@@ -7,81 +7,93 @@
 [ext_resource path="res://Nodes/Platform.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Nodes/BorderTeleporter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Nodes/DroppablePlatform.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Nodes/KillBorder.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Levels/Level1.gd" type="Script" id=9]
+[ext_resource path="res://Nodes/Ladder.tscn" type="PackedScene" id=10]
 
 [node name="Level1" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="Level1" type="Sprite" parent="."]
+position = Vector2( 960, 635 )
+texture = ExtResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 151, 675 )
+speed = Vector2( 300, 1000 )
+gravity = 25
+
+[node name="Player2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1591, 822 )
+playerNumber = 2
 
 [node name="healthBars" parent="." instance=ExtResource( 2 )]
 anchor_left = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.0
 margin_right = 1920.0
 
-[node name="Level1" type="Sprite" parent="."]
-position = Vector2( 960, 540 )
-texture = ExtResource( 1 )
+[node name="Player1Pos" type="Node2D" parent="."]
+position = Vector2( 0, 95 )
 
-[node name="Player1" parent="." instance=ExtResource( 4 )]
-position = Vector2( 70, 536 )
-
-[node name="Player2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1582, 737 )
-playerNumber = 2
+[node name="Player2Pos" type="Node2D" parent="."]
+position = Vector2( 0, 95 )
 
 [node name="LeftBorder" parent="." instance=ExtResource( 6 )]
-position = Vector2( -100, 615 )
+position = Vector2( -100, 710 )
 scale = Vector2( 1, 23.5 )
 axis = 1
 relativePosition = Vector2( 25, 0 )
 
 [node name="LeftBorder2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -100, 0 )
+position = Vector2( -100, 95 )
 scale = Vector2( 1, 23.5 )
 axis = 1
 relativePosition = Vector2( 25, -15 )
 
 [node name="RightBorder" parent="." instance=ExtResource( 6 )]
-position = Vector2( 2000, 540 )
+position = Vector2( 2000, 635 )
 scale = Vector2( 1, 72.344 )
 relativePosition = Vector2( -50, 0 )
 
-[node name="BottomBorder" parent="." instance=ExtResource( 6 )]
-position = Vector2( 960, 1200 )
-scale = Vector2( 97, 1 )
-axis = 2
-relativePosition = Vector2( 0, -150 )
+[node name="BottomBorder" parent="." instance=ExtResource( 8 )]
 
 [node name="Platform" parent="." instance=ExtResource( 3 )]
-position = Vector2( 573, 625 )
+position = Vector2( 573, 720 )
 scale = Vector2( 1.4, 3 )
 
+[node name="Ladder" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1076, 547 )
+scale = Vector2( 5.934, 31.032 )
+
 [node name="Platform11" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1444.07, 270 )
+position = Vector2( 1444.07, 365 )
 scale = Vector2( 1.2, 1.2 )
 
 [node name="CollisionPolygon2D" parent="Platform11" index="0"]
 polygon = PoolVector2Array( -197.558, -71.6667, -77.5583, -15, 94.9417, -16.6667, 204.108, -75, 205.775, -47.5, 121.608, 15, -77.5583, 15.8333, -197.558, -38.3334, -219.817, -38.333, -222.319, -72.249 )
 
 [node name="Platform5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 829, 237 )
+position = Vector2( 829, 332 )
 scale = Vector2( 3.5, 3.057 )
 
 [node name="Platform6" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1679, 547 )
+position = Vector2( 1679, 642 )
 scale = Vector2( 1.035, 4.401 )
 
 [node name="Platform7" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1889, 579 )
+position = Vector2( 1889, 674 )
 scale = Vector2( 1.054, 2.505 )
 
 [node name="Platform9" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1847, 233 )
+position = Vector2( 1847, 328 )
 scale = Vector2( 1.564, 3.085 )
 
 [node name="Platform8" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1760, 965 )
+position = Vector2( 1760, 1060 )
 scale = Vector2( 2.435, 7 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 0, 95 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2( 0, 193 )

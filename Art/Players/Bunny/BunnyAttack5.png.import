@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HealthBarTop2.svg-63364403f22f016d3df5fcebd50a139f.stex"
+path="res://.import/BunnyAttack5.png-3e0922ab536df543838fef87057e9fc6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/HealthBarTop2.svg"
-dest_files=[ "res://.import/HealthBarTop2.svg-63364403f22f016d3df5fcebd50a139f.stex" ]
+source_file="res://Art/Players/Bunny/BunnyAttack5.png"
+dest_files=[ "res://.import/BunnyAttack5.png-3e0922ab536df543838fef87057e9fc6.stex" ]
 
 [params]
 
@@ -27,7 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
-process/invert_color=true
+process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MiniBarBase1.svg-2d1db27457e077fc2bd4ae9ccaa13237.stex"
+path="res://.import/BunnyShoot3.png-aca649baeeff913d36821c87f6ac8245.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/MiniBarBase1.svg"
-dest_files=[ "res://.import/MiniBarBase1.svg-2d1db27457e077fc2bd4ae9ccaa13237.stex" ]
+source_file="res://Art/Players/Bunny/BunnyShoot3.png"
+dest_files=[ "res://.import/BunnyShoot3.png-aca649baeeff913d36821c87f6ac8245.stex" ]
 
 [params]
 

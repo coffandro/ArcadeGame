@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HealthBarTop1.svg-275d34f58245ad9710b3f73f6c099c93.stex"
+path="res://.import/HealthBarProgress2.png-b1529642fa354d9359c3c22ecbacc5cd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/HealthBarTop1.svg"
-dest_files=[ "res://.import/HealthBarTop1.svg-275d34f58245ad9710b3f73f6c099c93.stex" ]
+source_file="res://Art/HealthBarProgress2.png"
+dest_files=[ "res://.import/HealthBarProgress2.png-b1529642fa354d9359c3c22ecbacc5cd.stex" ]
 
 [params]
 
@@ -27,7 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
-process/invert_color=true
+process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0

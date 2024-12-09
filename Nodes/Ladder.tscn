@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Ladder" type="StaticBody2D" groups=["Ladder"]]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Ladder"]]
+shape = SubResource( 1 )
