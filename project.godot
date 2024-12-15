@@ -578,7 +578,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-LevelState="*res://LevelState.gd"
+SoundSystem="*res://Nodes/SoundSystem.tscn"
 
 [display]
 
@@ -698,3 +698,4 @@ attack3_p2={
 2d_physics/layer_3="Player2"
 2d_physics/layer_4="DroppablePlatforms"
 2d_physics/layer_5="Ladders"
+2d_physics/layer_6="Bullets"

@@ -4,7 +4,9 @@ export(PackedScene) var Bullet
 onready var animatedSprite = $AnimatedSprite
 onready var attackPoint = $AttackPoint
 onready var attackCooldown = $AttackCooldown
-onready var LevelState = get_node("/root/LevelState")
+var healthBars
+#onready var LevelState = get_node("/root/LevelState")
+onready var SoundSystem = get_node("/root/SoundSystem")
 
 export var speed := Vector2(400.0, 500.0)
 export var gravity := 35
@@ -12,10 +14,14 @@ var velocity: = Vector2.ZERO
 
 export var playerNumber: int = 1
 
+var isAttacking = false
 var on_ladder = false
 var facing = 1
 
-var isAttacking = false
+var bullets = 5
+var HealthSetFunction
+var MiniSetFunction
+var TimeLabelSetFunction
 
 var Actions = {
 	"Jump" : "jump_p",
@@ -58,48 +64,56 @@ func _ready():
 		Actions[i] = Actions[i] + str(playerNumber)
 	for i in Anims.keys():
 		Anims[i] = Anims[i] + str(playerNumber)
+	
+	HealthSetFunction = "SetP1Health" if playerNumber == 1 else "SetP2Health"
+	MiniSetFunction = "SetP1Mini" if playerNumber == 1 else "SetP2Mini"
+	
+	healthBars = $"../HealthBars"
 
 func _physics_process(delta):
+	HandleGravity()
 	if not isAttacking:
-		HandleGravity()
 		if on_ladder:
 			if Input.is_action_pressed(Actions["Up"]):
 				velocity.y = -speed.x * 2
 			elif Input.is_action_pressed(Actions["Down"]):
 				velocity.y = speed.x * 2
-			#else:
-			#	velocity.y = 0
-		else:
-			#Dropping through platforms
-			if Input.is_action_pressed(Actions["Down"]) and Input.is_action_pressed(Actions["Jump"]) and is_on_floor():
-					var PlatformBelow = $FloorRaycast.get_collider()
-					if PlatformBelow != null:
-						if PlatformBelow.is_in_group("DroppablePlatform"):
-							PlatformBelow.IgnorePlayer(playerNumber)
-			# Jumping
-			elif Input.is_action_just_pressed(Actions["Jump"]) and is_on_floor():
-				velocity.y = -speed.y
+		#Dropping through platforms
+		if Input.is_action_pressed(Actions["Down"]) and Input.is_action_pressed(Actions["Jump"]) and is_on_floor():
+				var PlatformBelow = $FloorRaycast.get_collider()
+				if PlatformBelow != null:
+					if PlatformBelow.is_in_group("DroppablePlatform"):
+						PlatformBelow.IgnorePlayer(playerNumber)
+		# Jumping
+		elif Input.is_action_just_pressed(Actions["Jump"]) and is_on_floor():
+			velocity.y = -speed.y
 		
 		var direction = Input.get_axis(Actions["Left"], Actions["Right"])
 		
 		velocity.x = speed.x * direction
 		
 		if direction != 0:
-			animatedSprite.scale.x = 0.25 * direction
-			$MeeleeArea/CollisionShape2D.position.x = 55 * direction
-			attackPoint.position.x = 110 * direction
-			facing = direction
+			# create variable multipler with the value -1 if direction is less than 0, else it's 1
+			var multipler = -1 if direction < 0 else 1
+			
+			animatedSprite.scale.x = 0.25 * multipler
+			$MeeleeArea/CollisionShape2D.position.x = 55 * multipler
+			attackPoint.position.x = 110 * multipler
+			facing = multipler
 			animatedSprite.play(Anims["Run"])
 		else:
 			animatedSprite.play(Anims["Idle"])
 		
-		velocity = move_and_slide(velocity, Vector2.UP)
-		velocity.x = lerp(velocity.x,0,0.5)
-		
+	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity.x = lerp(velocity.x,0,0.5)
+	
+	# Set falling or jumping animations
+	if not isAttacking:
 		if velocity.y > 10 && not is_on_floor():
 			animatedSprite.play(Anims["Falling"])
 		elif velocity.y < -10 && not is_on_floor():
 			animatedSprite.play(Anims["Jump"])
+		
 	
 	# Handle attack
 	if Input.is_action_just_pressed(Actions["Attack1"]) and attackCooldown.is_stopped():
@@ -109,18 +123,22 @@ func _physics_process(delta):
 		attackCooldown.start()
 	
 	if Input.is_action_just_pressed(Actions["Attack2"]) and attackCooldown.is_stopped():
-		# Create bullet and set data
-		var b = Bullet.instance()
-		b.SetData(playerNumber, facing)
-		b.transform = attackPoint.global_transform
-		owner.add_child(b)
-		# Disable collision via animationPlayer
-		$AnimationPlayer.play("Attack2")
-		# Set logic for delays
-		isAttacking = true
-		attackCooldown.start()
-		# Play animation
-		animatedSprite.play(Anims["Shoot"])
+		if bullets > 0:
+			# Create bullet and set data
+			var b = Bullet.instance()
+			b.SetData(playerNumber, facing)
+			b.transform = attackPoint.global_transform
+			$"../".add_child(b)
+			# Disable collision via animationPlayer
+			# Set logic
+			isAttacking = true
+			attackCooldown.start()
+			# Play animation
+			animatedSprite.play(Anims["Shoot"])
+			# Handle UI
+			bullets -= 1
+			healthBars.call(MiniSetFunction, bullets)
+			
 	
 	if Input.is_action_just_pressed(Actions["Attack3"]):
 		print("Attack3")
@@ -136,18 +154,17 @@ func HandleGravity():
 
 func TakeDamage(damage):
 	if playerNumber == 1:
-		LevelState.P1Health -= damage
-		$"../healthBars".SetP1Health(LevelState.P1Health)
-		if LevelState.P1Health < 0:
-			LevelState.PlayerDied(playerNumber)
+		$"../".P1Health -= damage
+		healthBars.call(HealthSetFunction, $"../".P2Health)
+		if $"../".P1Health <= 0:
+			$"../".PlayerDied(playerNumber)
+			#queue_free()
 	elif playerNumber == 2:
-		LevelState.P2Health -= damage
-		$"../healthBars".SetP2Health(LevelState.P2Health)
-		if LevelState.P2Health < 0:
-			LevelState.PlayerDied(playerNumber)
-	
-	print(LevelState.P1Health)
-	print(LevelState.P2Health)
+		$"../".P2Health -= damage
+		healthBars.call(HealthSetFunction, $"../".P2Health)
+		if $"../".P2Health <= 0:
+			$"../".PlayerDied(playerNumber)
+			#queue_free()
 
 func _on_MeeleeArea_body_entered(body):
 	if "Player" in body.name:
@@ -155,7 +172,6 @@ func _on_MeeleeArea_body_entered(body):
 			return
 		
 		body.TakeDamage(10)
-
 
 func _on_AnimatedSprite_animation_finished():
 	if isAttacking:
@@ -171,3 +187,8 @@ func _on_BodyArea_body_exited(body):
 	if body.is_in_group("Ladder"):
 		on_ladder = false
 		print(on_ladder)
+
+func _on_BulletTimer_timeout():
+	if bullets < 5:
+		bullets += 1
+		healthBars.call(MiniSetFunction, bullets)

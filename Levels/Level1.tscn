@@ -1,15 +1,15 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Art/Level1.png" type="Texture" id=1]
-[ext_resource path="res://Levels/healthBars.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Nodes/healthBars.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Nodes/JumpablePlatform.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Nodes/Platform.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Nodes/BorderTeleporter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Nodes/DroppablePlatform.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Nodes/KillBorder.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Levels/Level1.gd" type="Script" id=9]
 [ext_resource path="res://Nodes/Ladder.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Nodes/PlayerSpawner.tscn" type="PackedScene" id=11]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 9 )
@@ -18,16 +18,15 @@ script = ExtResource( 9 )
 position = Vector2( 960, 635 )
 texture = ExtResource( 1 )
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="PlayerSpawner1" parent="." instance=ExtResource( 11 )]
 position = Vector2( 151, 675 )
-speed = Vector2( 300, 1000 )
-gravity = 25
+playerNumber = 1
 
-[node name="Player2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1591, 822 )
+[node name="PlayerSpawner2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1863, 503 )
 playerNumber = 2
 
-[node name="healthBars" parent="." instance=ExtResource( 2 )]
+[node name="HealthBars" parent="." instance=ExtResource( 2 )]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_right = 1920.0
@@ -62,8 +61,8 @@ position = Vector2( 573, 720 )
 scale = Vector2( 1.4, 3 )
 
 [node name="Ladder" parent="." instance=ExtResource( 10 )]
-position = Vector2( 1076, 547 )
-scale = Vector2( 5.934, 31.032 )
+position = Vector2( 1075, 608 )
+scale = Vector2( 5.934, 25 )
 
 [node name="Platform11" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1444.07, 365 )
