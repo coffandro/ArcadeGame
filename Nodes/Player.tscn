@@ -1,6 +1,6 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=35 format=2]
 
-[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Players/Bunny/Bunny.png" type="Texture" id=2]
 [ext_resource path="res://Art/Players/Bunny/BunnyRun2.png" type="Texture" id=3]
 [ext_resource path="res://Art/Players/Bunny/BunnyRun3.png" type="Texture" id=4]
@@ -19,6 +19,15 @@
 [ext_resource path="res://Art/Players/Bunny/BunnyAttack1.png" type="Texture" id=17]
 [ext_resource path="res://Art/Players/Bunny/BunnyAttack6.png" type="Texture" id=18]
 [ext_resource path="res://Art/Players/Bunny/BunnyAttack2.png" type="Texture" id=19]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyAttack1.png" type="Texture" id=20]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyAttack4.png" type="Texture" id=21]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyAttack6.png" type="Texture" id=22]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyAttack5.png" type="Texture" id=23]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyAttack3.png" type="Texture" id=24]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyAttack2.png" type="Texture" id=25]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyShoot1.png" type="Texture" id=26]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyShoot2.png" type="Texture" id=27]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyShoot3.png" type="Texture" id=28]
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -57,6 +66,11 @@ animations = [ {
 "name": "Meelee1",
 "speed": 10.0
 }, {
+"frames": [ ExtResource( 20 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 22 ) ],
+"loop": false,
+"name": "Meelee2",
+"speed": 10.0
+}, {
 "frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "Run1",
@@ -65,12 +79,17 @@ animations = [ {
 "frames": [ ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "Run2",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 13 ) ],
 "loop": false,
 "name": "Shoot1",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "Shoot2",
+"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=11]
@@ -165,12 +184,12 @@ shape = SubResource( 1 )
 [node name="MeeleeArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeeleeArea"]
-position = Vector2( 55, 0 )
+position = Vector2( 48, 1 )
 shape = SubResource( 10 )
 disabled = true
 
 [node name="AttackPoint" type="Node2D" parent="."]
-position = Vector2( 51, -32 )
+position = Vector2( 30, -30 )
 
 [node name="FloorRaycast" type="RayCast2D" parent="."]
 position = Vector2( 0, 50 )

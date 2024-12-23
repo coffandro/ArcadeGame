@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Art/Level1.png" type="Texture" id=1]
+[ext_resource path="res://Art/Levels/Level1.png" type="Texture" id=1]
 [ext_resource path="res://Nodes/healthBars.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Nodes/JumpablePlatform.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Nodes/Platform.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Nodes/BorderTeleporter.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Nodes/DroppablePlatform.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Nodes/KillBorder.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Levels/Level1.gd" type="Script" id=9]
-[ext_resource path="res://Nodes/Ladder.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Nodes/LD/JumpablePlatform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/LD/Platform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nodes/LD/BorderTeleporter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Nodes/LD/DroppablePlatform.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Nodes/LD/KillBorder.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Levels/Level1.gd" type="Script" id=9]
+[ext_resource path="res://Nodes/LD/Ladder.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Nodes/PlayerSpawner.tscn" type="PackedScene" id=11]
 
 [node name="Level1" type="Node2D"]
@@ -55,6 +55,8 @@ scale = Vector2( 1, 72.344 )
 relativePosition = Vector2( -50, 0 )
 
 [node name="BottomBorder" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1116, 1183 )
+scale = Vector2( 0.8, 1 )
 
 [node name="Platform" parent="." instance=ExtResource( 3 )]
 position = Vector2( 573, 720 )
@@ -69,11 +71,11 @@ position = Vector2( 1444.07, 365 )
 scale = Vector2( 1.2, 1.2 )
 
 [node name="CollisionPolygon2D" parent="Platform11" index="0"]
-polygon = PoolVector2Array( -197.558, -71.6667, -77.5583, -15, 94.9417, -16.6667, 204.108, -75, 205.775, -47.5, 121.608, 15, -77.5583, 15.8333, -197.558, -38.3334, -219.817, -38.333, -222.319, -72.249 )
+polygon = PoolVector2Array( -197.558, -71.6667, -77.5583, -15, 94.9417, -16.6667, 204.108, -75, 205.775, -47.5, 121.608, 15, -77.5583, 15.8333, -197.558, -38.3334, -375, -38.333, -375, -72.249 )
 
 [node name="Platform5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 829, 332 )
-scale = Vector2( 3.5, 3.057 )
+position = Vector2( 750, 332 )
+scale = Vector2( 2.65, 3.057 )
 
 [node name="Platform6" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1679, 642 )

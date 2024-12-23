@@ -1,20 +1,20 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Art/HealthBarBase1.png" type="Texture" id=1]
-[ext_resource path="res://Art/HealthBarProgress2.png" type="Texture" id=2]
-[ext_resource path="res://Art/MiniBarBase.png" type="Texture" id=3]
-[ext_resource path="res://Art/MiniBareProgress.png" type="Texture" id=4]
-[ext_resource path="res://Art/HealthBarBase2.png" type="Texture" id=5]
-[ext_resource path="res://Art/HealthBarTop2.png" type="Texture" id=6]
-[ext_resource path="res://Nodes/healthBars.gd" type="Script" id=7]
-[ext_resource path="res://Art/HealthBarProgress1.png" type="Texture" id=8]
+[ext_resource path="res://Art/UI/HealthBarBase1.png" type="Texture" id=1]
+[ext_resource path="res://Art/UI/HealthBarProgress2.png" type="Texture" id=2]
+[ext_resource path="res://Art/UI/MiniBarBase.png" type="Texture" id=3]
+[ext_resource path="res://Art/UI/MiniBareProgress.png" type="Texture" id=4]
+[ext_resource path="res://Art/UI/HealthBarBase2.png" type="Texture" id=5]
+[ext_resource path="res://Art/UI/HealthBarTop2.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/healthBars.gd" type="Script" id=7]
+[ext_resource path="res://Art/UI/HealthBarProgress1.png" type="Texture" id=8]
 [ext_resource path="res://Fonts/Maj-Regular.otf" type="DynamicFontData" id=9]
-[ext_resource path="res://Art/HealthBarTop1.png" type="Texture" id=10]
-[ext_resource path="res://Art/WinBar1.png" type="Texture" id=11]
-[ext_resource path="res://Art/WinBar2.png" type="Texture" id=12]
+[ext_resource path="res://Art/UI/HealthBarTop1.png" type="Texture" id=10]
+[ext_resource path="res://Art/UI/WinBar1.png" type="Texture" id=11]
+[ext_resource path="res://Art/UI/WinBar2.png" type="Texture" id=12]
 
-[sub_resource type="DynamicFont" id=1]
-size = 128
+[sub_resource type="DynamicFont" id=3]
+size = 96
 font_data = ExtResource( 9 )
 
 [node name="HealthBars" type="Control"]
@@ -59,7 +59,7 @@ anchor_right = 0.5
 margin_left = -59.0
 margin_right = 59.0
 margin_bottom = 155.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "99"
 
 [node name="P1Mini" type="TextureProgress" parent="."]
