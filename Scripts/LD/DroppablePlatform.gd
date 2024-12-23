@@ -3,7 +3,6 @@ extends StaticBody2D
 var LastPlayer
 
 func IgnorePlayer(value:int):
-	print(value)
 	LastPlayer = value
 	set_collision_layer_bit(value, false)
 	set_collision_mask_bit(value, false)
