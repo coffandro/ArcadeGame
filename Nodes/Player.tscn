@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Players/Bunny/Bunny.png" type="Texture" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://Art/Players/Hampster/HampsterLadder1.png" type="Texture" id=28]
 [ext_resource path="res://Art/Players/Hampster/HampsterRun1.png" type="Texture" id=29]
 [ext_resource path="res://Art/Players/Hampster/HampsterLadder2.png" type="Texture" id=30]
+[ext_resource path="res://Scripts/PlayerAudioManager.gd" type="Script" id=31]
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -115,7 +116,7 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ true, false, true ]
 }
 
@@ -131,7 +132,7 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ true, false ]
 }
 
@@ -146,12 +147,13 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
+"update": 0,
 "values": [ true ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 35, 57 )
+[sub_resource type="CapsuleShape2D" id=14]
+radius = 35.0
+height = 44.0
 
 [sub_resource type="CircleShape2D" id=10]
 radius = 50.0
@@ -188,9 +190,9 @@ anims/Attack1 = SubResource( 11 )
 anims/Attack2 = SubResource( 13 )
 anims/RESET = SubResource( 12 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -6, -5 )
-shape = SubResource( 1 )
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( -4, -5 )
+shape = SubResource( 14 )
 
 [node name="MeeleeArea" type="Area2D" parent="."]
 
@@ -211,8 +213,19 @@ collision_mask = 8
 collision_mask = 17
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BodyArea"]
-position = Vector2( -6, -5 )
-shape = SubResource( 1 )
+position = Vector2( -4, -5 )
+shape = SubResource( 14 )
+
+[node name="AudioManager" type="Node2D" parent="."]
+script = ExtResource( 31 )
+
+[node name="AttackPlayer" type="AudioStreamPlayer2D" parent="AudioManager"]
+
+[node name="ShootPlayer" type="AudioStreamPlayer2D" parent="AudioManager"]
+
+[node name="JumpPlayer" type="AudioStreamPlayer2D" parent="AudioManager"]
+
+[node name="MovePlayer" type="AudioStreamPlayer2D" parent="AudioManager"]
 
 [connection signal="timeout" from="BulletTimer" to="." method="_on_BulletTimer_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

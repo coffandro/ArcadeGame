@@ -6,9 +6,16 @@ var P1Health
 var P2Health
 var roundsPlayed = 0
 
+var Songs = [
+	preload("res://Sound/Level1Music/Chiptune Chilled Fun Intensity 1.wav"),
+	preload("res://Sound/Level1Music/Chiptune Chilled Fun Intensity 2.wav"),
+	preload("res://Sound/Level1Music/Chiptune Chilled Fun main.wav"),
+]
+
 func _ready():
 	P1Score = 0
 	P2Score = 0
+	
 	StartRound()
 
 func StartRound():
@@ -25,6 +32,9 @@ func StartRound():
 	
 	$PlayerSpawner1.call_deferred("SpawnPlayer")
 	$PlayerSpawner2.call_deferred("SpawnPlayer")
+	
+	$"../MusicPlayer".stream = Songs[roundsPlayed]
+	$"../MusicPlayer".play()
 
 func PlayerDied(PlayerID:int):
 	roundsPlayed += 1
@@ -41,10 +51,9 @@ func PlayerDied(PlayerID:int):
 	if roundsPlayed == 3:
 		if P1Score > P2Score:
 			print("Player 1 won")
-			get_tree().quit()
+			$DeathScreen.PlayerWon(1)
 		if P2Score > P1Score:
 			print("Player 2 won")
-			get_tree().quit()
+			$DeathScreen.PlayerWon(2)
 	else:
 		StartRound()
-

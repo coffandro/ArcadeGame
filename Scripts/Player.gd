@@ -6,7 +6,7 @@ onready var attackPoint = $AttackPoint
 onready var attackCooldown = $AttackCooldown
 var healthBars
 #onready var LevelState = get_node("/root/LevelState")
-onready var SoundSystem = get_node("/root/SoundSystem")
+#onready var SoundSystem = get_node("/root/SoundSystem")
 
 export var speed := Vector2(400.0, 500.0)
 export var gravity := 35
@@ -59,6 +59,8 @@ func _ready():
 	else:
 		print("The fuck you doing my duude?, playerNumber > 2")
 	
+	$AudioManager.SetBus(playerNumber)
+	
 	for i in Actions.keys():
 		Actions[i] = Actions[i] + str(playerNumber)
 	for i in Anims.keys():
@@ -88,6 +90,8 @@ func _physics_process(delta):
 		# Jumping
 		elif Input.is_action_just_pressed(Actions["Jump"]) and is_on_floor():
 			velocity.y = -speed.y
+			$AudioManager.Jump()
+			
 		elif !Input.is_action_pressed(Actions["Up"]) and !Input.is_action_pressed(Actions["Jump"]) and velocity.y < 0:
 			velocity.y = 0
 		
@@ -109,6 +113,8 @@ func _physics_process(delta):
 			
 			facing = multipler
 			animatedSprite.play(Anims["Run"])
+			if is_on_floor():
+				$AudioManager.Move()
 		elif on_ladder and (velocity.y < -10 || velocity.y > 10):
 			animatedSprite.play(Anims["Ladder"])
 		else:
@@ -142,6 +148,7 @@ func MeeleeAttack(timeout):
 	isAttacking = true
 	if timeout:
 		attackCooldown.start()
+		$AudioManager.Attack()
 
 func RangedAttack(timeout):
 	if bullets > 0:
@@ -153,6 +160,7 @@ func RangedAttack(timeout):
 		# Disable collision via animationPlayer
 		# Set logic
 		isAttacking = true
+		$AudioManager.Shoot()
 		if timeout:
 			attackCooldown.start()
 		# Play animation
