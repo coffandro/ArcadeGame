@@ -9,7 +9,7 @@
 [ext_resource path="res://Nodes/LD/KillBorder.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Levels/Level1.gd" type="Script" id=9]
 [ext_resource path="res://Nodes/LD/Ladder.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Nodes/PlayerSpawner.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Nodes/LD/PlayerSpawner.tscn" type="PackedScene" id=11]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 9 )

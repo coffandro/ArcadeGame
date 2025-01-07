@@ -18,7 +18,6 @@ func SetP2Health(value:int):
 	P2Health.value = value
 
 func SetP1Mini(value):
-	print(value)
 	P1Mini.value = value
 
 func SetP2Mini(value:int):

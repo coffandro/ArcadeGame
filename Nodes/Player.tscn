@@ -1,14 +1,13 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Players/Bunny/Bunny.png" type="Texture" id=2]
 [ext_resource path="res://Art/Players/Bunny/BunnyRun2.png" type="Texture" id=3]
 [ext_resource path="res://Art/Players/Bunny/BunnyRun3.png" type="Texture" id=4]
 [ext_resource path="res://Art/Players/Bunny/BunnyRun1.png" type="Texture" id=5]
-[ext_resource path="res://Art/Players/BunnyEvil/Bunny.png" type="Texture" id=6]
-[ext_resource path="res://Art/Players/BunnyEvil/BunnyRun2.png" type="Texture" id=7]
-[ext_resource path="res://Art/Players/BunnyEvil/BunnyRun3.png" type="Texture" id=8]
-[ext_resource path="res://Art/Players/BunnyEvil/BunnyRun1.png" type="Texture" id=9]
+[ext_resource path="res://Art/Players/Hampster/Hampster.png" type="Texture" id=6]
+[ext_resource path="res://Art/Players/Hampster/HampsterRun2.png" type="Texture" id=7]
+[ext_resource path="res://Art/Players/Hampster/HampsterShoot2.png" type="Texture" id=9]
 [ext_resource path="res://Nodes/Bullet.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Art/Players/Bunny/BunnyShoot2.png" type="Texture" id=11]
 [ext_resource path="res://Art/Players/Bunny/BunnyShoot1.png" type="Texture" id=12]
@@ -19,15 +18,17 @@
 [ext_resource path="res://Art/Players/Bunny/BunnyAttack1.png" type="Texture" id=17]
 [ext_resource path="res://Art/Players/Bunny/BunnyAttack6.png" type="Texture" id=18]
 [ext_resource path="res://Art/Players/Bunny/BunnyAttack2.png" type="Texture" id=19]
-[ext_resource path="res://Art/Players/BunnyEvil/BunnyAttack1.png" type="Texture" id=20]
-[ext_resource path="res://Art/Players/BunnyEvil/BunnyAttack4.png" type="Texture" id=21]
-[ext_resource path="res://Art/Players/BunnyEvil/BunnyAttack6.png" type="Texture" id=22]
-[ext_resource path="res://Art/Players/BunnyEvil/BunnyAttack5.png" type="Texture" id=23]
-[ext_resource path="res://Art/Players/BunnyEvil/BunnyAttack3.png" type="Texture" id=24]
-[ext_resource path="res://Art/Players/BunnyEvil/BunnyAttack2.png" type="Texture" id=25]
-[ext_resource path="res://Art/Players/BunnyEvil/BunnyShoot1.png" type="Texture" id=26]
-[ext_resource path="res://Art/Players/BunnyEvil/BunnyShoot2.png" type="Texture" id=27]
-[ext_resource path="res://Art/Players/BunnyEvil/BunnyShoot3.png" type="Texture" id=28]
+[ext_resource path="res://Art/Players/Hampster/HampsterAttack1.png" type="Texture" id=20]
+[ext_resource path="res://Art/Players/Hampster/HampsterAttack2.png" type="Texture" id=21]
+[ext_resource path="res://Art/Players/Hampster/HampsterAttack5.png" type="Texture" id=22]
+[ext_resource path="res://Art/Players/Hampster/HampsterAttack4.png" type="Texture" id=23]
+[ext_resource path="res://Art/Players/Hampster/HampsterAttack3.png" type="Texture" id=24]
+[ext_resource path="res://Art/Players/Hampster/HampsterShoot3.png" type="Texture" id=25]
+[ext_resource path="res://Art/Players/Hampster/HampsterShoot1.png" type="Texture" id=26]
+[ext_resource path="res://Art/Players/Hampster/HampsterShoot4.png" type="Texture" id=27]
+[ext_resource path="res://Art/Players/Hampster/HampsterLadder1.png" type="Texture" id=28]
+[ext_resource path="res://Art/Players/Hampster/HampsterRun1.png" type="Texture" id=29]
+[ext_resource path="res://Art/Players/Hampster/HampsterLadder2.png" type="Texture" id=30]
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -36,7 +37,7 @@ animations = [ {
 "name": "Falling1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "Falling2",
 "speed": 5.0
@@ -56,9 +57,19 @@ animations = [ {
 "name": "Jump1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
+"frames": [ ExtResource( 29 ) ],
 "loop": true,
 "name": "Jump2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Ladder1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "Ladder2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 18 ) ],
@@ -66,7 +77,7 @@ animations = [ {
 "name": "Meelee1",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 20 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 22 ) ],
+"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 23 ), ExtResource( 22 ) ],
 "loop": false,
 "name": "Meelee2",
 "speed": 10.0
@@ -76,7 +87,7 @@ animations = [ {
 "name": "Run1",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 29 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "Run2",
 "speed": 6.0
@@ -86,7 +97,7 @@ animations = [ {
 "name": "Shoot1",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ) ],
+"frames": [ ExtResource( 26 ), ExtResource( 9 ), ExtResource( 25 ), ExtResource( 27 ) ],
 "loop": true,
 "name": "Shoot2",
 "speed": 5.0
@@ -184,7 +195,7 @@ shape = SubResource( 1 )
 [node name="MeeleeArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeeleeArea"]
-position = Vector2( 48, 1 )
+position = Vector2( 32, 1 )
 shape = SubResource( 10 )
 disabled = true
 

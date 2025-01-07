@@ -18,7 +18,11 @@ func SetData(Side, Direction):
 func _on_Bullet_body_entered(body):
 	if "Player" in body.name:
 		if body.playerNumber != playerSide:
-			body.TakeDamage(10)
+			if playerSide == 1:
+				body.TakeDamage(10)
+			elif playerSide == 2:
+				body.TakeDamage(20)
+	
 	if not body.is_in_group("Teleporter"):
 		$AnimationPlayer.play("BulletHit")
 		moving = false

@@ -39,19 +39,18 @@ var Anims = {
 	"Idle": "Idle",
 	"Meelee": "Meelee",
 	"Jump": "Jump",
-	"Falling": "Falling"
+	"Falling": "Falling",
+	"Ladder": "Ladder"
 }
 
 func _ready():
 	if playerNumber == 1:
-		print("Player 1")
 		set_collision_layer_bit(0, false)
 		set_collision_layer_bit(1, true)
 		set_collision_layer_bit(2, false)
 		set_collision_mask_bit(1, false)
 		set_collision_mask_bit(2, true)
 	elif playerNumber == 2:
-		print("Player 2")
 		set_collision_layer_bit(0, false)
 		set_collision_layer_bit(1, false)
 		set_collision_layer_bit(2, true)
@@ -78,12 +77,14 @@ func _physics_process(delta):
 				velocity.y = -speed.x * 2
 			elif Input.is_action_pressed(Actions["Down"]):
 				velocity.y = speed.x * 2
+		
 		#Dropping through platforms
 		if Input.is_action_pressed(Actions["Down"]) and Input.is_action_pressed(Actions["Jump"]) and is_on_floor():
 				var PlatformBelow = $FloorRaycast.get_collider()
 				if PlatformBelow != null:
 					if PlatformBelow.is_in_group("DroppablePlatform"):
 						PlatformBelow.IgnorePlayer(playerNumber)
+		
 		# Jumping
 		elif Input.is_action_just_pressed(Actions["Jump"]) and is_on_floor():
 			velocity.y = -speed.y
@@ -99,10 +100,17 @@ func _physics_process(delta):
 			var multipler = -1 if direction < 0 else 1
 			
 			animatedSprite.scale.x = 0.25 * multipler
-			$MeeleeArea/CollisionShape2D.position.x = 55 * multipler
 			attackPoint.position.x = 110 * multipler
+			
+			if playerNumber == 1:
+				$MeeleeArea/CollisionShape2D.position.x = 32 * multipler
+			elif playerNumber == 2:
+				$MeeleeArea/CollisionShape2D.position.x = 16 * multipler
+			
 			facing = multipler
 			animatedSprite.play(Anims["Run"])
+		elif on_ladder and (velocity.y < -10 || velocity.y > 10):
+			animatedSprite.play(Anims["Ladder"])
 		else:
 			animatedSprite.play(Anims["Idle"])
 		
@@ -111,11 +119,11 @@ func _physics_process(delta):
 	
 	# Set falling or jumping animations
 	if not isAttacking:
-		if velocity.y > 10 && not is_on_floor():
-			animatedSprite.play(Anims["Falling"])
-		elif velocity.y < -10 && not is_on_floor():
-			animatedSprite.play(Anims["Jump"])
-		
+		if not on_ladder:
+			if velocity.y > 20 && not is_on_floor():
+				animatedSprite.play(Anims["Falling"])
+			elif velocity.y < -10 && not is_on_floor():
+				animatedSprite.play(Anims["Jump"])
 	
 	# Handle attack
 	if Input.is_action_just_pressed(Actions["Attack1"]) and attackCooldown.is_stopped():
@@ -181,7 +189,10 @@ func _on_MeeleeArea_body_entered(body):
 		if body.playerNumber == playerNumber:
 			return
 		
-		body.TakeDamage(10)
+		if playerNumber == 1:
+			body.TakeDamage(20)
+		elif playerNumber == 2:
+			body.TakeDamage(10)
 
 func _on_AnimatedSprite_animation_finished():
 	if isAttacking:
