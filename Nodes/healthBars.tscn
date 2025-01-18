@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Art/UI/HealthBarBase1.png" type="Texture" id=1]
 [ext_resource path="res://Art/UI/HealthBarProgress2.png" type="Texture" id=2]
@@ -8,14 +8,10 @@
 [ext_resource path="res://Art/UI/HealthBarTop2.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/healthBars.gd" type="Script" id=7]
 [ext_resource path="res://Art/UI/HealthBarProgress1.png" type="Texture" id=8]
-[ext_resource path="res://Fonts/Maj-Regular.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://Art/UI/WinBarBase.png" type="Texture" id=9]
 [ext_resource path="res://Art/UI/HealthBarTop1.png" type="Texture" id=10]
 [ext_resource path="res://Art/UI/WinBar1.png" type="Texture" id=11]
 [ext_resource path="res://Art/UI/WinBar2.png" type="Texture" id=12]
-
-[sub_resource type="DynamicFont" id=3]
-size = 96
-font_data = ExtResource( 9 )
 
 [node name="HealthBars" type="Control"]
 anchor_right = 1.0
@@ -25,7 +21,6 @@ P1Health = NodePath("P1Health")
 P1Mini = NodePath("P1Mini")
 P2Health = NodePath("P2Health")
 P2Mini = NodePath("P2Mini")
-TimeLabel = NodePath("TimeLabel")
 P1Win = NodePath("P1WinBar")
 P2Win = NodePath("P2WinBar")
 
@@ -53,15 +48,6 @@ texture_progress = ExtResource( 2 )
 texture_progress_offset = Vector2( 125, 74 )
 fill_mode = 1
 
-[node name="TimeLabel" type="Label" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -59.0
-margin_right = 59.0
-margin_bottom = 155.0
-custom_fonts/font = SubResource( 3 )
-text = "99"
-
 [node name="P1Mini" type="TextureProgress" parent="."]
 margin_left = 525.0
 margin_top = 110.0
@@ -88,38 +74,37 @@ texture_progress_offset = Vector2( 18, 9 )
 
 [node name="Sprite" type="TextureRect" parent="."]
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -49.9999
-margin_top = -7.0
-margin_right = 248.0
-margin_bottom = 61.0
-rect_scale = Vector2( 0.35, 1 )
-texture = ExtResource( 3 )
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -25.0
+margin_right = 50.0
+margin_bottom = 25.0
+texture = ExtResource( 9 )
 
 [node name="P1WinBar" type="TextureProgress" parent="."]
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 margin_left = -50.0
-margin_top = -6.0
+margin_top = -25.0
 margin_right = 50.0
-margin_bottom = 44.0
+margin_bottom = 25.0
 max_value = 3.0
 step = 0.5
 texture_progress = ExtResource( 11 )
 
 [node name="P2WinBar" type="TextureProgress" parent="."]
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 margin_left = -50.0
-margin_top = -6.0
+margin_top = -25.0
 margin_right = 50.0
-margin_bottom = 44.0
+margin_bottom = 25.0
 max_value = 3.0
 step = 0.5
 texture_progress = ExtResource( 12 )

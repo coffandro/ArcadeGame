@@ -592,6 +592,10 @@ window/size/fullscreen=true
 version_control_autoload_on_startup=true
 version_control_plugin_name="GitAPI"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/BuildScripts/plugin.cfg" )
+
 [input]
 
 move_left_p1={

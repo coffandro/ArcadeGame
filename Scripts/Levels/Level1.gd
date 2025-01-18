@@ -33,6 +33,9 @@ func StartRound():
 	$PlayerSpawner1.call_deferred("SpawnPlayer")
 	$PlayerSpawner2.call_deferred("SpawnPlayer")
 	
+	if roundsPlayed > 3:
+		roundsPlayed = 0
+	
 	$"../MusicPlayer".stream = Songs[roundsPlayed]
 	$"../MusicPlayer".play()
 
