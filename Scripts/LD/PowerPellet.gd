@@ -4,6 +4,8 @@ signal picked_up(emitter)
 
 var currentPellet:int
 var id:int
+var offset = 750
+var t = 0.0
 var powerupAssets = [
 	preload("res://Art/Levels/Powerups/Bullets.png"),
 	preload("res://Art/Levels/Powerups/Lightning.png"),
@@ -23,8 +25,19 @@ func SpawnPellet(PelletNum:int):
 	currentPellet = PelletNum
 	$Pellet/Sprite.texture = powerupAssets[PelletNum-1]
 	$Pellet/Collision.set_deferred("disabled", false)
-	$Pellet.position = Vector2($Pellet.position.x, 0)
-	
+	$Pellet.position.y -= offset
+	t = 0
+
+func _physics_process(delta: float) -> void:
+	if $Pellet.position != $ZeroPoint.position:
+		t += delta * 0.3
+		$Pellet.position = ($ZeroPoint.position - Vector2(0, offset)).linear_interpolate($ZeroPoint.position, t)
+		if t > 1:
+			t = 1
+
+func round_to_dec(num, digit):
+	return round(num * pow(10.0, digit)) / pow(10.0, digit)
+
 func _on_Pellet_body_entered(body:Node):
 	if body.is_in_group("Player"):
 		if body.currrentPowerUp == "":

@@ -20,4 +20,6 @@ texture = ExtResource( 2 )
 [node name="Collision" type="CollisionShape2D" parent="Pellet"]
 shape = SubResource( 1 )
 
+[node name="ZeroPoint" type="Node2D" parent="."]
+
 [connection signal="body_entered" from="Pellet" to="." method="_on_Pellet_body_entered"]
