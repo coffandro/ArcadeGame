@@ -6,12 +6,13 @@ var backtrack = preload("res://Sound/MenuMusic/Chiptune Vol2 Lighthearted Chill 
 func _ready():
 	hide()
 
-func PlayerWon(PlayerNumber):
+func PlayerWon(PlayerNumber, playerTexture):
 	show()
 	MusicPlayer.stream = backtrack
 	MusicPlayer.play(15)
 	$VBoxContainer/WonLabel.text = "Player %s Won!" % PlayerNumber
 	$VBoxContainer/RestartButton.grab_focus()
+	$PlayerPreview.texture = playerTexture
 
 func _on_RestartButton_pressed():
 	get_tree().change_scene("res://Levels/Level1.tscn")

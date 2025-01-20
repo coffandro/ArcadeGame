@@ -71,7 +71,7 @@ func _ready():
 	
 	healthBars = $"../HealthBars"
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	HandleGravity()
 	if not isAttacking:
 		if on_ladder:

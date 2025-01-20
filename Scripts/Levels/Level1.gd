@@ -54,9 +54,23 @@ func PlayerDied(PlayerID:int):
 	if roundsPlayed == 3:
 		if P1Score > P2Score:
 			print("Player 1 won")
-			$DeathScreen.PlayerWon(1)
+			var player1texture
+			for child in get_children():
+				if child.is_in_group("Player1"):
+					player1texture = child.animatedSprite.get_frame("Idle1", 0)
+
+			$DeathScreen.PlayerWon(1, player1texture)
 		if P2Score > P1Score:
 			print("Player 2 won")
-			$DeathScreen.PlayerWon(2)
+			var player2texture
+			for child in get_children():
+				if child.is_in_group("Player2"):
+					player2texture = child.animatedSprite.frames.get_frame("Idle2", 0)
+
+			$DeathScreen.PlayerWon(2, player2texture)
+		for child in get_children():
+			if child.is_in_group("Player"):
+				child.queue_free()
+
 	else:
 		StartRound()
