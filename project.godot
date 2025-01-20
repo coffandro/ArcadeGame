@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "TextureButton",
+"class": "ShadowedTextureButton",
+"language": "GDScript",
+"path": "res://ShadowedTextureButton.gd"
+}, {
 "base": "VisualShaderNodeCustom",
 "class": "VisualShaderNodeNoiseGeneric2d",
 "language": "GDScript",
@@ -475,6 +480,7 @@ _global_script_classes=[ {
 "path": "res://addons/shaderV/tools/vec2Compose.gd"
 } ]
 _global_script_class_icons={
+"ShadowedTextureButton": "",
 "VisualShaderNodeNoiseGeneric2d": "",
 "VisualShaderNodeNoiseGeneric2dFractal": "",
 "VisualShaderNodeNoisePerlin2d": "",

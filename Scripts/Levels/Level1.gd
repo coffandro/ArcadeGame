@@ -6,9 +6,19 @@ var P1Health
 var P2Health
 var roundsPlayed = 0
 
+var random = RandomNumberGenerator.new()
+
 var Songs = [
 	preload("res://Sound/Level1Music/Chiptune Chilled Fun Intensity 1.wav"),
 	preload("res://Sound/Level1Music/Chiptune Chilled Fun Intensity 2.wav"),
+]
+
+onready var PelletSpawners = [
+	$PowerPellet,
+	$PowerPellet2,
+	$PowerPellet3,
+	$PowerPellet4,
+	$PowerPellet5
 ]
 
 func _ready():
@@ -78,3 +88,10 @@ func PlayerDied(PlayerID:int):
 
 	else:
 		StartRound()
+
+
+func _on_PelletSpawn_timeout() -> void:
+	random.randomize()
+	var PelletSpawner = random.randi_range(0, 4)
+	random.randomize()
+	PelletSpawners[4].SpawnPellet(random.randi_range(1, PelletSpawners[PelletSpawner].powerUps.size()))

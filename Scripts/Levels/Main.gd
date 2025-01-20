@@ -9,7 +9,7 @@ func _ready():
 	$"../MusicPlayer".stream = Backtrack
 	$"../MusicPlayer".play()
 
-func _on_Button_pressed():
+func _on_PlayButton_pressed():
 	get_tree().change_scene("res://Levels/Level1.tscn")
 
 func _on_QuitButton_pressed():

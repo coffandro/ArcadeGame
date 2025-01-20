@@ -19,6 +19,7 @@ var on_ladder = false
 var facing = 1
 
 var bullets = 5
+var currrentPowerUp = ""
 var HealthSetFunction
 var MiniSetFunction
 var TimeLabelSetFunction

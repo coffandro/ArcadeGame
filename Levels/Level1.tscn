@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Art/Levels/Level1.png" type="Texture" id=1]
 [ext_resource path="res://Nodes/healthBars.tscn" type="PackedScene" id=2]
@@ -11,9 +11,14 @@
 [ext_resource path="res://Scripts/Levels/Level1.gd" type="Script" id=9]
 [ext_resource path="res://Nodes/LD/Ladder.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Nodes/LD/PlayerSpawner.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Nodes/LD/PowerPellet.tscn" type="PackedScene" id=12]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 9 )
+
+[node name="PelletSpawn" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
 
 [node name="Level1" type="Sprite" parent="."]
 position = Vector2( 960, 635 )
@@ -27,6 +32,21 @@ playerNumber = 1
 position = Vector2( 1863, 503 )
 playerNumber = 2
 
+[node name="PowerPellet" parent="." instance=ExtResource( 12 )]
+position = Vector2( 960, 225 )
+
+[node name="PowerPellet2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 75, 225 )
+
+[node name="PowerPellet3" parent="." instance=ExtResource( 12 )]
+position = Vector2( 1845, 225 )
+
+[node name="PowerPellet4" parent="." instance=ExtResource( 12 )]
+position = Vector2( 75, 850 )
+
+[node name="PowerPellet5" parent="." instance=ExtResource( 12 )]
+position = Vector2( 1845, 850 )
+
 [node name="DeathScreen" parent="." instance=ExtResource( 4 )]
 visible = false
 anchor_right = 0.0
@@ -38,32 +58,6 @@ margin_bottom = 1080.0
 anchor_left = 0.5
 anchor_right = 0.5
 margin_right = 1920.0
-
-[node name="Player1Pos" type="Node2D" parent="."]
-position = Vector2( 0, 95 )
-
-[node name="Player2Pos" type="Node2D" parent="."]
-position = Vector2( 0, 95 )
-
-[node name="PlayerSpawner" parent="." instance=ExtResource( 11 )]
-position = Vector2( 70, 850 )
-scale = Vector2( 1, 23.5 )
-
-[node name="PlayerSpawner3" parent="." instance=ExtResource( 11 )]
-position = Vector2( 70, 225 )
-scale = Vector2( 1, 23.5 )
-
-[node name="PlayerSpawner4" parent="." instance=ExtResource( 11 )]
-position = Vector2( 1850, 850 )
-scale = Vector2( 1, 23.5 )
-
-[node name="PlayerSpawner5" parent="." instance=ExtResource( 11 )]
-position = Vector2( 1850, 225 )
-scale = Vector2( 1, 23.5 )
-
-[node name="PlayerSpawner6" parent="." instance=ExtResource( 11 )]
-position = Vector2( 960, 225 )
-scale = Vector2( 1, 23.5 )
 
 [node name="LeftBorder" parent="." instance=ExtResource( 6 )]
 position = Vector2( -100, 710 )
@@ -134,5 +128,7 @@ polygon = PoolVector2Array( -110, 0, 184, 5, 259, 64, 706, 62, 708, 237, -110, 2
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 946, 768, 1306, 769, 1303, 838, 1265, 914, 1212, 968, 1166, 1037, 1110, 997, 1030, 942, 975, 887, 952, 840 )
+
+[connection signal="timeout" from="PelletSpawn" to="." method="_on_PelletSpawn_timeout"]
 
 [editable path="Platform11"]
