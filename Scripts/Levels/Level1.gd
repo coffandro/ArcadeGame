@@ -21,9 +21,18 @@ onready var PelletSpawners = [
 	$PowerPellet5
 ]
 
+var CurrentPelletSpawners = []
+
 func _ready():
 	P1Score = 0
 	P2Score = 0
+
+	var index = 0
+	for i in PelletSpawners:
+		CurrentPelletSpawners.append(i)
+		i.connect("picked_up", self, "add_to_current_pelletspawners")
+		i.id = index
+		index += 1
 	
 	StartRound()
 
@@ -89,9 +98,14 @@ func PlayerDied(PlayerID:int):
 	else:
 		StartRound()
 
+func add_to_current_pelletspawners(spawner):
+	CurrentPelletSpawners.append(spawner)
+
 
 func _on_PelletSpawn_timeout() -> void:
-	random.randomize()
-	var PelletSpawner = random.randi_range(0, 4)
-	random.randomize()
-	PelletSpawners[4].SpawnPellet(random.randi_range(1, PelletSpawners[PelletSpawner].powerUps.size()))
+	if CurrentPelletSpawners.size() > 0:
+		random.randomize()
+		var PelletSpawner = random.randi_range(0, CurrentPelletSpawners.size()-1)
+		random.randomize()
+		CurrentPelletSpawners[PelletSpawner].SpawnPellet(random.randi_range(1, PelletSpawners[PelletSpawner].powerUps.size()))
+		CurrentPelletSpawners.remove(PelletSpawner)

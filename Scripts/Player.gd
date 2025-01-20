@@ -9,6 +9,7 @@ var healthBars
 #onready var SoundSystem = get_node("/root/SoundSystem")
 
 export var speed := Vector2(400.0, 500.0)
+export var speedBoost := 2
 export var gravity := 35
 var velocity: = Vector2.ZERO
 
@@ -45,6 +46,8 @@ var Anims = {
 }
 
 func _ready():
+	$Shield.hide()
+
 	if playerNumber == 1:
 		set_collision_layer_bit(0, false)
 		set_collision_layer_bit(1, true)
@@ -83,7 +86,7 @@ func _physics_process(_delta):
 		
 		#Dropping through platforms
 		if Input.is_action_pressed(Actions["Down"]) and Input.is_action_pressed(Actions["Jump"]) and is_on_floor():
-				var PlatformBelow = $FloorRaycast.get_collider()
+				var PlatformBelow = $PlatformRaycast.get_collider()
 				if PlatformBelow != null:
 					if PlatformBelow.is_in_group("DroppablePlatform"):
 						PlatformBelow.IgnorePlayer(playerNumber)
@@ -99,6 +102,9 @@ func _physics_process(_delta):
 		var direction = Input.get_axis(Actions["Left"], Actions["Right"])
 		
 		velocity.x = speed.x * direction
+
+		if currrentPowerUp == "Speed":
+			velocity.x *= speedBoost
 		
 		if direction != 0:
 			# create variable multipler with the value -1 if direction is less than 0, else it's 1
@@ -220,3 +226,20 @@ func _on_BulletTimer_timeout():
 	if bullets < 5:
 		bullets += 1
 		healthBars.call(MiniSetFunction, bullets)
+
+func apply_power_up(powerup: int):
+	print(powerup)
+	match powerup:
+		1:
+			currrentPowerUp = ""
+			bullets = 5
+		2:
+			currrentPowerUp = "Speed"
+		3:
+			currrentPowerUp = "Shield"
+			$Shield.show()
+			$ShieldTimer.start()
+
+func _on_ShieldTimer_timeout() -> void:
+	$Shield.hide()
+	currrentPowerUp = ""

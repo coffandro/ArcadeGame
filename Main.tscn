@@ -18,7 +18,7 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="Theme" id=1]
 default_font = SubResource( 2 )
-Label/colors/font_color = Color( 0.866667, 0.305882, 0.219608, 1 )
+Label/colors/font_color = Color( 0.215686, 0.215686, 0.215686, 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 128
@@ -67,7 +67,7 @@ margin_right = 128.0
 margin_bottom = 64.0
 rect_scale = Vector2( 1.25, 1.25 )
 rect_pivot_offset = Vector2( 0, 64 )
-texture = ExtResource( 8 )
+texture = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="Control/VBoxContainer/PlayButton"]
 anchor_left = 1.0
@@ -112,7 +112,7 @@ margin_right = 128.0
 margin_bottom = 64.0
 rect_scale = Vector2( 0.75, 0.75 )
 rect_pivot_offset = Vector2( 0, 64 )
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="Control/VBoxContainer/CenterContainer2/GuideButton"]
 anchor_left = 1.0
@@ -123,7 +123,7 @@ margin_left = -400.0
 margin_top = -27.5
 margin_right = -13.0
 margin_bottom = 27.5
-text = "Action Guide"
+text = "Instructions"
 
 [node name="ShadowZindex" type="Node2D" parent="Control/VBoxContainer/CenterContainer2/GuideButton"]
 z_index = -1

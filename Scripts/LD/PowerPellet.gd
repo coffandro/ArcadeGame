@@ -1,6 +1,9 @@
 extends Node2D
 
+signal picked_up(emitter)
+
 var currentPellet:int
+var id:int
 var powerupAssets = [
 	preload("res://Art/Levels/Powerups/Bullets.png"),
 	preload("res://Art/Levels/Powerups/Lightning.png"),
@@ -8,7 +11,7 @@ var powerupAssets = [
 ]
 var powerUps = [
 	"Shoot",
-	"Lightning",
+	"Speed",
 	"Shield"
 ]
 
@@ -25,14 +28,8 @@ func SpawnPellet(PelletNum:int):
 func _on_Pellet_body_entered(body:Node):
 	if body.is_in_group("Player"):
 		if body.currrentPowerUp == "":
-			match currentPellet:
-				1:
-					body.currrentPowerUp = ""
-					body.bullets = 5
-				2:
-					body.currrentPowerUp = powerUps[1]
-				3:
-					body.currrentPowerUp = powerUps[2]
+			body.apply_power_up(currentPellet)
 				
 			$Pellet/Collision.set_deferred("disabled", true)
 			$Pellet/Sprite.texture = null
+			emit_signal("picked_up", self)
