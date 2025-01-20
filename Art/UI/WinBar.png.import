@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/WinBar1.png-c0c62229540e78dae87d7943e095a745.stex"
+path="res://.import/WinBar.png-476c38227378a7af64c0104506588e90.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UI/WinBar1.png"
-dest_files=[ "res://.import/WinBar1.png-c0c62229540e78dae87d7943e095a745.stex" ]
+source_file="res://Art/UI/WinBar.png"
+dest_files=[ "res://.import/WinBar.png-476c38227378a7af64c0104506588e90.stex" ]
 
 [params]
 

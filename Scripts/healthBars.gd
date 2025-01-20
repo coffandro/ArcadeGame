@@ -10,6 +10,10 @@ export(NodePath) onready var P2Win = get_node(P2Win) as Node
 var P1Score = 0
 var P2Score = 0
 
+func _ready():
+    P1Win.value = 0
+    P2Win.value = 0
+
 func SetP1Health(value:int):
 	P1Health.value = value
 
@@ -32,37 +36,3 @@ func AddToScore(side):
 	
 	P1Win.value = P1Score
 	P2Win.value = P2Score
-	
-	
-	"""
-	if (P1Score == 1 && P2Score == 0):
-		P1Win.value = 3
-		P2Win.value = 0
-	elif (P1Score == 2 && P2Score == 0):
-		P1Win.value = 3
-		P2Win.value = 0
-	elif (P1Score == 3 && P2Score == 0):
-		P1Win.value = 3
-		P2Win.value = 0
-	
-	elif (P1Score == 0 && P2Score == 1):
-		P1Win.value = 0
-		P2Win.value = 3
-	elif (P1Score == 0 && P2Score == 2):
-		P1Win.value = 0
-		P2Win.value = 3
-	elif (P1Score == 0 && P2Score == 3):
-		P1Win.value = 0
-		P2Win.value = 3
-	
-	elif (P1Score == 1 && P2Score == 1):
-		P1Win.value = 1.5
-		P2Win.value = 1.5
-	
-	elif (P1Score == 1 && P2Score == 2):
-		P1Win.value = 1
-		P2Win.value = 2
-	elif (P1Score == 2 && P2Score == 1):
-		P1Win.value = 2
-		P2Win.value = 1
-	"""

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Players/Bunny/Bunny.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Art/Players/Bunny/BunnyRun1.png" type="Texture" id=5]
 [ext_resource path="res://Art/Players/Hampster/Hampster.png" type="Texture" id=6]
 [ext_resource path="res://Art/Players/Hampster/HampsterRun2.png" type="Texture" id=7]
+[ext_resource path="res://Art/Players/Bunny/BunnyLadder2.png" type="Texture" id=8]
 [ext_resource path="res://Art/Players/Hampster/HampsterShoot2.png" type="Texture" id=9]
 [ext_resource path="res://Nodes/Bullet.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Art/Players/Bunny/BunnyShoot2.png" type="Texture" id=11]
@@ -30,6 +31,7 @@
 [ext_resource path="res://Art/Players/Hampster/HampsterRun1.png" type="Texture" id=29]
 [ext_resource path="res://Art/Players/Hampster/HampsterLadder2.png" type="Texture" id=30]
 [ext_resource path="res://Scripts/PlayerAudioManager.gd" type="Script" id=31]
+[ext_resource path="res://Art/Players/Bunny/BunnyLadder1.png" type="Texture" id=32]
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -38,7 +40,7 @@ animations = [ {
 "name": "Falling1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 29 ) ],
 "loop": true,
 "name": "Falling2",
 "speed": 5.0
@@ -58,12 +60,12 @@ animations = [ {
 "name": "Jump1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 29 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "Jump2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 32 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "Ladder1",
 "speed": 5.0
@@ -179,7 +181,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -1, -20 )
+position = Vector2( -2, -20 )
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 9 )
 animation = "Idle1"

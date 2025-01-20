@@ -28,6 +28,7 @@ position = Vector2( 1863, 503 )
 playerNumber = 2
 
 [node name="DeathScreen" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1920.0
@@ -43,6 +44,26 @@ position = Vector2( 0, 95 )
 
 [node name="Player2Pos" type="Node2D" parent="."]
 position = Vector2( 0, 95 )
+
+[node name="PlayerSpawner" parent="." instance=ExtResource( 11 )]
+position = Vector2( 70, 850 )
+scale = Vector2( 1, 23.5 )
+
+[node name="PlayerSpawner3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 70, 225 )
+scale = Vector2( 1, 23.5 )
+
+[node name="PlayerSpawner4" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1850, 850 )
+scale = Vector2( 1, 23.5 )
+
+[node name="PlayerSpawner5" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1850, 225 )
+scale = Vector2( 1, 23.5 )
+
+[node name="PlayerSpawner6" parent="." instance=ExtResource( 11 )]
+position = Vector2( 960, 225 )
+scale = Vector2( 1, 23.5 )
 
 [node name="LeftBorder" parent="." instance=ExtResource( 6 )]
 position = Vector2( -100, 710 )

@@ -9,7 +9,6 @@ var roundsPlayed = 0
 var Songs = [
 	preload("res://Sound/Level1Music/Chiptune Chilled Fun Intensity 1.wav"),
 	preload("res://Sound/Level1Music/Chiptune Chilled Fun Intensity 2.wav"),
-	preload("res://Sound/Level1Music/Chiptune Chilled Fun main.wav"),
 ]
 
 func _ready():
@@ -33,7 +32,7 @@ func StartRound():
 	$PlayerSpawner1.call_deferred("SpawnPlayer")
 	$PlayerSpawner2.call_deferred("SpawnPlayer")
 	
-	if roundsPlayed > 3:
+	if roundsPlayed > 2:
 		roundsPlayed = 0
 	
 	$"../MusicPlayer".stream = Songs[roundsPlayed]
@@ -51,26 +50,31 @@ func PlayerDied(PlayerID:int):
 		$HealthBars.AddToScore(1)
 		P1Score += 1
 	
-	if roundsPlayed == 3:
+
+	if P1Score > 1 || P2Score > 1: 
 		if P1Score > P2Score:
 			print("Player 1 won")
 			var player1texture
 			for child in get_children():
 				if child.is_in_group("Player1"):
-					player1texture = child.animatedSprite.get_frame("Idle1", 0)
+					player1texture = child.animatedSprite.frames.get_frame("Meelee1", 1)
 
 			$DeathScreen.PlayerWon(1, player1texture)
+			for child in get_children():
+				if child.is_in_group("Player"):
+					child.queue_free()
+
 		if P2Score > P1Score:
 			print("Player 2 won")
 			var player2texture
 			for child in get_children():
 				if child.is_in_group("Player2"):
-					player2texture = child.animatedSprite.frames.get_frame("Idle2", 0)
+					player2texture = child.animatedSprite.frames.get_frame("Meelee2", 1)
 
 			$DeathScreen.PlayerWon(2, player2texture)
-		for child in get_children():
-			if child.is_in_group("Player"):
-				child.queue_free()
+			for child in get_children():
+				if child.is_in_group("Player"):
+					child.queue_free()
 
 	else:
 		StartRound()

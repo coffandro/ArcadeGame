@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/WinBar2.png-85694ca8a71117212a23b3fa0d2c554f.stex"
+path="res://.import/BunnyLadder2.png-86e7ff80f9f4c15216ac899bc3b30f03.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UI/WinBar2.png"
-dest_files=[ "res://.import/WinBar2.png-85694ca8a71117212a23b3fa0d2c554f.stex" ]
+source_file="res://Art/Players/Bunny/BunnyLadder2.png"
+dest_files=[ "res://.import/BunnyLadder2.png-86e7ff80f9f4c15216ac899bc3b30f03.stex" ]
 
 [params]
 
