@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Art/UI/ButtonBG.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Levels/Main.gd" type="Script" id=2]
@@ -7,10 +7,14 @@
 [ext_resource path="res://Art/UI/BigButtonBG.png" type="Texture" id=5]
 [ext_resource path="res://Fonts/Jack Armstrong.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://shaders/DropShadowMat.tres" type="Material" id=7]
-[ext_resource path="res://Art/UI/Button1.png" type="Texture" id=8]
+[ext_resource path="res://Art/UI/Button.png" type="Texture" id=8]
 [ext_resource path="res://ShadowedTextureButton.gd" type="Script" id=9]
-[ext_resource path="res://Art/UI/Button2.png" type="Texture" id=10]
-[ext_resource path="res://Art/UI/Button3.png" type="Texture" id=11]
+[ext_resource path="res://Art/UI/MenuBackgroundNoLeaves.png" type="Texture" id=10]
+[ext_resource path="res://Art/Leaves/Leaf1.obj" type="ArrayMesh" id=11]
+[ext_resource path="res://Art/Leaves/Leaf2.obj" type="ArrayMesh" id=12]
+[ext_resource path="res://Art/Leaves/Leaf3.obj" type="ArrayMesh" id=13]
+[ext_resource path="res://Art/Leaves/Leaf4.obj" type="ArrayMesh" id=14]
+[ext_resource path="res://shaders/LeafMaterial.tres" type="Material" id=15]
 
 [sub_resource type="DynamicFont" id=2]
 size = 48
@@ -24,42 +28,53 @@ Label/colors/font_color = Color( 0.215686, 0.215686, 0.215686, 1 )
 size = 128
 font_data = ExtResource( 6 )
 
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 1
+emission_sphere_radius = 2.0
+flag_rotate_y = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, -0.2, 0 )
+initial_velocity = 0.5
+initial_velocity_random = 1.0
+angular_velocity_random = 1.0
+radial_accel_random = 0.5
+tangential_accel_random = 1.0
+damping_random = 1.0
+angle = -75.0
+angle_random = 1.0
+scale = 0.5
+scale_random = 1.0
+hue_variation = 0.1
+hue_variation_random = 1.0
+
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 3 )
 
-[node name="Node2D" type="Node2D" parent="Control"]
-z_index = -10
-
-[node name="TextureRect" type="TextureRect" parent="Control/Node2D"]
-margin_right = 1920.0
-margin_bottom = 1080.0
-texture = ExtResource( 4 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -300.0
 margin_top = -412.0
-margin_right = 300.0
+margin_right = 375.0
 margin_bottom = 112.0
 theme = SubResource( 1 )
 custom_constants/separation = 25
 
-[node name="PlayButton" type="TextureButton" parent="Control/VBoxContainer"]
+[node name="PlayButton" type="TextureButton" parent="UI/VBoxContainer"]
 margin_right = 675.0
 margin_bottom = 252.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 5 )
 script = ExtResource( 9 )
 
-[node name="ControllerIcon" type="TextureRect" parent="Control/VBoxContainer/PlayButton"]
+[node name="ControllerIcon" type="TextureRect" parent="UI/VBoxContainer/PlayButton"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -64.0
@@ -67,9 +82,9 @@ margin_right = 128.0
 margin_bottom = 64.0
 rect_scale = Vector2( 1.25, 1.25 )
 rect_pivot_offset = Vector2( 0, 64 )
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/PlayButton"]
+[node name="Label" type="Label" parent="UI/VBoxContainer/PlayButton"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -81,22 +96,22 @@ margin_bottom = 72.5
 custom_fonts/font = SubResource( 3 )
 text = "Start"
 
-[node name="ShadowZindex" type="Node2D" parent="Control/VBoxContainer/PlayButton"]
+[node name="ShadowZindex" type="Node2D" parent="UI/VBoxContainer/PlayButton"]
 z_index = -1
 
-[node name="Shadow" type="TextureRect" parent="Control/VBoxContainer/PlayButton/ShadowZindex"]
+[node name="Shadow" type="TextureRect" parent="UI/VBoxContainer/PlayButton/ShadowZindex"]
 material = ExtResource( 7 )
 margin_top = 5.0
 margin_right = 557.0
 margin_bottom = 257.0
 texture = ExtResource( 5 )
 
-[node name="CenterContainer2" type="CenterContainer" parent="Control/VBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="UI/VBoxContainer"]
 margin_top = 277.0
 margin_right = 675.0
 margin_bottom = 388.0
 
-[node name="GuideButton" type="TextureButton" parent="Control/VBoxContainer/CenterContainer2"]
+[node name="GuideButton" type="TextureButton" parent="UI/VBoxContainer/CenterContainer2"]
 margin_left = 87.0
 margin_right = 587.0
 margin_bottom = 111.0
@@ -104,7 +119,7 @@ mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 script = ExtResource( 9 )
 
-[node name="ControllerIcon" type="TextureRect" parent="Control/VBoxContainer/CenterContainer2/GuideButton"]
+[node name="ControllerIcon" type="TextureRect" parent="UI/VBoxContainer/CenterContainer2/GuideButton"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -64.0
@@ -114,7 +129,7 @@ rect_scale = Vector2( 0.75, 0.75 )
 rect_pivot_offset = Vector2( 0, 64 )
 texture = ExtResource( 8 )
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/CenterContainer2/GuideButton"]
+[node name="Label" type="Label" parent="UI/VBoxContainer/CenterContainer2/GuideButton"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -125,22 +140,22 @@ margin_right = -13.0
 margin_bottom = 27.5
 text = "Instructions"
 
-[node name="ShadowZindex" type="Node2D" parent="Control/VBoxContainer/CenterContainer2/GuideButton"]
+[node name="ShadowZindex" type="Node2D" parent="UI/VBoxContainer/CenterContainer2/GuideButton"]
 z_index = -1
 
-[node name="Shadow" type="TextureRect" parent="Control/VBoxContainer/CenterContainer2/GuideButton/ShadowZindex"]
+[node name="Shadow" type="TextureRect" parent="UI/VBoxContainer/CenterContainer2/GuideButton/ShadowZindex"]
 material = ExtResource( 7 )
 margin_top = 5.0
 margin_right = 436.0
 margin_bottom = 116.0
 texture = ExtResource( 1 )
 
-[node name="CenterContainer" type="CenterContainer" parent="Control/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="UI/VBoxContainer"]
 margin_top = 413.0
 margin_right = 675.0
 margin_bottom = 524.0
 
-[node name="QuitButton" type="TextureButton" parent="Control/VBoxContainer/CenterContainer"]
+[node name="QuitButton" type="TextureButton" parent="UI/VBoxContainer/CenterContainer"]
 margin_left = 87.0
 margin_right = 587.0
 margin_bottom = 111.0
@@ -148,7 +163,7 @@ mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 script = ExtResource( 9 )
 
-[node name="ControllerIcon" type="TextureRect" parent="Control/VBoxContainer/CenterContainer/QuitButton"]
+[node name="ControllerIcon" type="TextureRect" parent="UI/VBoxContainer/CenterContainer/QuitButton"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -64.0
@@ -156,9 +171,9 @@ margin_right = 128.0
 margin_bottom = 64.0
 rect_scale = Vector2( 0.75, 0.75 )
 rect_pivot_offset = Vector2( 0, 64 )
-texture = ExtResource( 11 )
+texture = ExtResource( 8 )
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/CenterContainer/QuitButton"]
+[node name="Label" type="Label" parent="UI/VBoxContainer/CenterContainer/QuitButton"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -169,15 +184,73 @@ margin_right = 61.0
 margin_bottom = 27.5
 text = "Quit"
 
-[node name="ShadowZindex" type="Node2D" parent="Control/VBoxContainer/CenterContainer/QuitButton"]
+[node name="ShadowZindex" type="Node2D" parent="UI/VBoxContainer/CenterContainer/QuitButton"]
 z_index = -1
 
-[node name="Shadow" type="TextureRect" parent="Control/VBoxContainer/CenterContainer/QuitButton/ShadowZindex"]
+[node name="Shadow" type="TextureRect" parent="UI/VBoxContainer/CenterContainer/QuitButton/ShadowZindex"]
 material = ExtResource( 7 )
 margin_top = 5.0
 margin_right = 436.0
 margin_bottom = 116.0
 texture = ExtResource( 1 )
 
-[connection signal="pressed" from="Control/VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/CenterContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[node name="Background" type="Spatial" parent="."]
+transform = Transform( 7.8, 0, 0, 0, 7.8, 0, 0, 0, 7.8, 0, 0, -50 )
+
+[node name="Background" type="Sprite3D" parent="Background"]
+visible = false
+texture = ExtResource( 4 )
+
+[node name="BackgroundNoLeaves" type="Sprite3D" parent="Background"]
+texture = ExtResource( 10 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20 )
+projection = 1
+size = 84.25
+
+[node name="Leaves" type="Spatial" parent="."]
+transform = Transform( 0.95089, -2.03919, 0, 2.03919, 0.95089, 0, 0, 0, 2.25, -80, 50, -20 )
+
+[node name="Particles1" type="Particles" parent="Leaves"]
+material_override = ExtResource( 15 )
+amount = 10
+lifetime = 60.0
+preprocess = 2.0
+speed_scale = 5.0
+randomness = 0.5
+process_material = SubResource( 11 )
+draw_pass_1 = ExtResource( 11 )
+
+[node name="Particles2" type="Particles" parent="Leaves"]
+material_override = ExtResource( 15 )
+amount = 10
+lifetime = 60.0
+preprocess = 4.0
+speed_scale = 5.0
+randomness = 0.5
+process_material = SubResource( 11 )
+draw_pass_1 = ExtResource( 12 )
+
+[node name="Particles3" type="Particles" parent="Leaves"]
+material_override = ExtResource( 15 )
+amount = 10
+lifetime = 60.0
+preprocess = 6.0
+speed_scale = 5.0
+randomness = 0.5
+process_material = SubResource( 11 )
+draw_pass_1 = ExtResource( 13 )
+
+[node name="Particles4" type="Particles" parent="Leaves"]
+material_override = ExtResource( 15 )
+amount = 10
+lifetime = 60.0
+preprocess = 8.0
+speed_scale = 5.0
+randomness = 0.5
+process_material = SubResource( 11 )
+draw_pass_1 = ExtResource( 14 )
+
+[connection signal="pressed" from="UI/VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/CenterContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

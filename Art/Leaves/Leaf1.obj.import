@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Leaf1.obj-f819e079b59e50a40f4dd642388e05de.mesh"
+
+[deps]
+
+files=[ "res://.import/Leaf1.obj-f819e079b59e50a40f4dd642388e05de.mesh" ]
+
+source_file="res://Art/Leaves/Leaf1.obj"
+dest_files=[ "res://.import/Leaf1.obj-f819e079b59e50a40f4dd642388e05de.mesh", "res://.import/Leaf1.obj-f819e079b59e50a40f4dd642388e05de.mesh" ]
+
+[params]
+
+scale_mesh=Vector3( 1.5, 1.5, 1.5 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh_flags=4286
+generate_tangents=true
+vertex_cache_optimization=true
+octahedral_compression=true

@@ -5,7 +5,7 @@ extends Node
 var Backtrack = preload("res://Sound/MenuMusic/Chiptune Vol2 Lighthearted Chill Main.wav")
 
 func _ready():
-	$Control/VBoxContainer/PlayButton.grab_focus()
+	$UI/VBoxContainer/PlayButton.grab_focus()
 	$"../MusicPlayer".stream = Backtrack
 	$"../MusicPlayer".play()
 

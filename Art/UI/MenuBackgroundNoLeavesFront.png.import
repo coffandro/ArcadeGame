@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/MenuBackground.png-be54d06512435fedfe757770d5cf4465.s3tc.stex"
-path.etc2="res://.import/MenuBackground.png-be54d06512435fedfe757770d5cf4465.etc2.stex"
+path.s3tc="res://.import/MenuBackgroundNoLeavesFront.png-288c8093bbe0fd4121c3c48b0324b407.s3tc.stex"
+path.etc2="res://.import/MenuBackgroundNoLeavesFront.png-288c8093bbe0fd4121c3c48b0324b407.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Art/UI/MenuBackground.png"
-dest_files=[ "res://.import/MenuBackground.png-be54d06512435fedfe757770d5cf4465.s3tc.stex", "res://.import/MenuBackground.png-be54d06512435fedfe757770d5cf4465.etc2.stex" ]
+source_file="res://Art/UI/MenuBackgroundNoLeavesFront.png"
+dest_files=[ "res://.import/MenuBackgroundNoLeavesFront.png-288c8093bbe0fd4121c3c48b0324b407.s3tc.stex", "res://.import/MenuBackgroundNoLeavesFront.png-288c8093bbe0fd4121c3c48b0324b407.etc2.stex" ]
 
 [params]
 
