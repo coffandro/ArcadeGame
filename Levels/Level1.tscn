@@ -17,7 +17,7 @@
 script = ExtResource( 9 )
 
 [node name="PelletSpawn" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 autostart = true
 
 [node name="Level1" type="Sprite" parent="."]

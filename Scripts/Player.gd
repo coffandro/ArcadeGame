@@ -5,8 +5,7 @@ onready var animatedSprite = $AnimatedSprite
 onready var attackPoint = $AttackPoint
 onready var attackCooldown = $AttackCooldown
 onready var healthBars = $"../HealthBars"
-#onready var LevelState = get_node("/root/LevelState")
-#onready var SoundSystem = get_node("/root/SoundSystem")
+onready var speedShader = $AnimatedSprite.get_material()
 
 export var speed := Vector2(400.0, 500.0)
 export var speedBoost := 2
@@ -233,6 +232,8 @@ func apply_power_up(powerup: int):
 			bullets = 5
 		2:
 			currrentPowerUp = "Speed"
+			speedShader.set_shader_param("enabled", true)
+			$BoostTimer.start()	
 		3:
 			currrentPowerUp = "Shield"
 			$Shield.show()
@@ -241,3 +242,8 @@ func apply_power_up(powerup: int):
 func _on_ShieldTimer_timeout() -> void:
 	$Shield.hide()
 	currrentPowerUp = ""
+
+
+func _on_BoostTimer_timeout() -> void:
+	currrentPowerUp = ""
+	speedShader.set_shader_param("enabled", false)

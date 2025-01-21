@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Players/Bunny/Bunny.png" type="Texture" id=2]
@@ -33,6 +33,84 @@
 [ext_resource path="res://Scripts/PlayerAudioManager.gd" type="Script" id=31]
 [ext_resource path="res://Art/Players/Bunny/BunnyLadder1.png" type="Texture" id=32]
 [ext_resource path="res://shaders/ShieldShader.tres" type="Material" id=33]
+[ext_resource path="res://icon.png" type="Texture" id=34]
+
+[sub_resource type="Shader" id=17]
+code = "shader_type canvas_item;
+
+uniform float Strength : hint_range(0,20) = 5;
+uniform float RandomOffset = 1.0;
+
+float random( float seed )
+{
+	return fract( 543.2543 * sin( dot( vec2( seed, seed ), vec2( 3525.46 + RandomOffset, -54.3415 ) ) ) );
+}
+
+void vertex()
+{
+	vec2 VERTEX_OFFSET = VERTEX;
+	VERTEX_OFFSET.x += (
+		random(
+			( trunc( VERTEX_OFFSET.y))
+		+	TIME
+		) - 0.5
+	) * Strength ;
+
+	VERTEX_OFFSET.y += (
+		random(
+			( trunc( VERTEX_OFFSET.x))
+		+	TIME
+		) - 0.5
+	) * Strength;
+	
+	VERTEX = VERTEX_OFFSET;	
+}"
+
+[sub_resource type="ShaderMaterial" id=18]
+shader = SubResource( 17 )
+shader_param/Strength = 5.0
+shader_param/RandomOffset = 1.0
+
+[sub_resource type="Shader" id=23]
+code = "shader_type canvas_item;
+
+uniform bool enabled = true;
+uniform float Strength : hint_range(0,100) = 5;
+uniform float RandomOffset = 1.0;
+
+float random( float seed )
+{
+	return fract( 543.2543 * sin( dot( vec2( seed, seed ), vec2( 3525.46 + RandomOffset, -54.3415 ) ) ) );
+}
+
+void vertex()
+{
+	if (enabled) {
+		vec2 VERTEX_OFFSET = VERTEX;
+		VERTEX_OFFSET.x += (
+			random(
+				( trunc( VERTEX_OFFSET.y))
+			+	TIME
+			) - 0.5
+		) * Strength ;
+
+		VERTEX_OFFSET.y += (
+			random(
+				( trunc( VERTEX_OFFSET.x))
+			+	TIME
+			) - 0.5
+		) * Strength;
+		
+		VERTEX = VERTEX_OFFSET;	
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=24]
+resource_local_to_scene = true
+shader = SubResource( 23 )
+shader_param/enabled = false
+shader_param/Strength = 30.0
+shader_param/RandomOffset = 2.5
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -162,6 +240,7 @@ height = 44.0
 radius = 50.0
 
 [node name="Player" type="KinematicBody2D"]
+material = SubResource( 18 )
 collision_layer = 6
 collision_mask = 7
 script = ExtResource( 1 )
@@ -185,7 +264,12 @@ autostart = true
 wait_time = 5.0
 one_shot = true
 
+[node name="BoostTimer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 24 )
 position = Vector2( -2, -20 )
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 9 )
@@ -242,11 +326,12 @@ script = ExtResource( 31 )
 [node name="Shield" type="Sprite" parent="."]
 material = ExtResource( 33 )
 position = Vector2( 0, -5 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 2 )
+scale = Vector2( 1.25, 1.25 )
+texture = ExtResource( 34 )
 
 [connection signal="timeout" from="BulletTimer" to="." method="_on_BulletTimer_timeout"]
 [connection signal="timeout" from="ShieldTimer" to="." method="_on_ShieldTimer_timeout"]
+[connection signal="timeout" from="BoostTimer" to="." method="_on_BoostTimer_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="MeeleeArea" to="." method="_on_MeeleeArea_body_entered"]
 [connection signal="body_entered" from="BodyArea" to="." method="_on_BodyArea_body_entered"]
