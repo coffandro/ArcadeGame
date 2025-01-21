@@ -140,11 +140,7 @@ func _physics_process(_delta):
 		MeeleeAttack(true)
 	
 	if Input.is_action_just_pressed(Actions["Attack2"]) and attackCooldown.is_stopped():
-		MeeleeAttack(false)
 		RangedAttack(true)
-	
-	if Input.is_action_just_pressed(Actions["Attack3"]):
-		print("Attack3")
 
 func MeeleeAttack(timeout):
 	$AnimationPlayer.play("Attack1")
@@ -201,10 +197,7 @@ func _on_MeeleeArea_body_entered(body):
 		if body.playerNumber == playerNumber:
 			return
 		
-		if playerNumber == 1:
-			body.TakeDamage(20)
-		elif playerNumber == 2:
-			body.TakeDamage(10)
+		body.TakeDamage(10)
 
 func _on_AnimatedSprite_animation_finished():
 	if isAttacking:
@@ -219,17 +212,12 @@ func _on_BodyArea_body_exited(body):
 	if body.is_in_group("Ladder"):
 		on_ladder = false
 
-func _on_BulletTimer_timeout():
-	if bullets < 5:
-		bullets += 1
-		healthBars.call(MiniSetFunction, bullets)
-
 func apply_power_up(powerup: int):
-	print(powerup)
 	match powerup:
 		1:
 			currrentPowerUp = ""
 			bullets = 5
+			healthBars.call(MiniSetFunction, bullets)
 		2:
 			currrentPowerUp = "Speed"
 			speedShader.set_shader_param("enabled", true)

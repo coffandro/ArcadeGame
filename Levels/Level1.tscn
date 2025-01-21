@@ -29,7 +29,7 @@ position = Vector2( 151, 675 )
 playerNumber = 1
 
 [node name="PlayerSpawner2" parent="." instance=ExtResource( 11 )]
-position = Vector2( 1863, 503 )
+position = Vector2( 1628, 868 )
 playerNumber = 2
 
 [node name="PowerPellet" parent="." instance=ExtResource( 12 )]
