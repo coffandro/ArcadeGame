@@ -4,7 +4,7 @@ export(PackedScene) var Bullet
 onready var animatedSprite = $AnimatedSprite
 onready var attackPoint = $AttackPoint
 onready var attackCooldown = $AttackCooldown
-var healthBars
+onready var healthBars = $"../HealthBars"
 #onready var LevelState = get_node("/root/LevelState")
 #onready var SoundSystem = get_node("/root/SoundSystem")
 
@@ -72,8 +72,6 @@ func _ready():
 	
 	HealthSetFunction = "SetP1Health" if playerNumber == 1 else "SetP2Health"
 	MiniSetFunction = "SetP1Mini" if playerNumber == 1 else "SetP2Mini"
-	
-	healthBars = $"../HealthBars"
 
 func _physics_process(_delta):
 	HandleGravity()
