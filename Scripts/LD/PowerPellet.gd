@@ -6,6 +6,7 @@ var currentPellet:int
 var id:int
 var offset = 750
 var t = 0.0
+
 var powerupAssets = [
 	preload("res://Art/Levels/Powerups/Bullets.png"),
 	preload("res://Art/Levels/Powerups/Lightning.png"),
@@ -39,10 +40,15 @@ func round_to_dec(num, digit):
 	return round(num * pow(10.0, digit)) / pow(10.0, digit)
 
 func _on_Pellet_body_entered(body:Node):
-	if body.is_in_group("Player"):
-		if body.currrentPowerUp == "":
-			body.apply_power_up(currentPellet)
-				
-			$Pellet/Collision.set_deferred("disabled", true)
-			$Pellet/Sprite.texture = null
-			emit_signal("picked_up", self)
+	if not body.is_in_group("Player"):
+		return
+	if body.currrentPowerUp != "":
+		return
+	if currentPellet == 1 and body.bullets == 5:
+		return
+
+	body.apply_power_up(currentPellet)
+		
+	$Pellet/Collision.set_deferred("disabled", true)
+	$Pellet/Sprite.texture = null
+	emit_signal("picked_up", self)

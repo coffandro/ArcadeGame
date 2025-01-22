@@ -78,7 +78,7 @@ func PlayerDied(PlayerID:int):
 				if child.is_in_group("Player1"):
 					player1texture = child.animatedSprite.frames.get_frame("Meelee1", 1)
 
-			$DeathScreen.PlayerWon(1, player1texture)
+			$CanvasLayer/DeathScreen.PlayerWon(1, player1texture)
 			for child in get_children():
 				if child.is_in_group("Player"):
 					child.queue_free()
@@ -90,7 +90,7 @@ func PlayerDied(PlayerID:int):
 				if child.is_in_group("Player2"):
 					player2texture = child.animatedSprite.frames.get_frame("Meelee2", 1)
 
-			$DeathScreen.PlayerWon(2, player2texture)
+			$CanvasLayer/DeathScreen.PlayerWon(2, player2texture)
 			for child in get_children():
 				if child.is_in_group("Player"):
 					child.queue_free()

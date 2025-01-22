@@ -47,18 +47,6 @@ position = Vector2( 75, 850 )
 [node name="PowerPellet5" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1845, 850 )
 
-[node name="DeathScreen" parent="." instance=ExtResource( 4 )]
-visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 1920.0
-margin_bottom = 1080.0
-
-[node name="HealthBars" parent="." instance=ExtResource( 2 )]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_right = 1920.0
-
 [node name="LeftBorder" parent="." instance=ExtResource( 6 )]
 position = Vector2( -100, 710 )
 scale = Vector2( 1, 23.5 )
@@ -93,7 +81,7 @@ position = Vector2( 1444.07, 365 )
 scale = Vector2( 1.2, 1.2 )
 
 [node name="CollisionPolygon2D" parent="Platform11" index="0"]
-polygon = PoolVector2Array( -197.558, -71.6667, -77.5583, -15, 94.9417, -16.6667, 204.108, -75, 205.775, -47.5, 121.608, 15, -77.5583, 15.8333, -197.558, -38.3334, -375, -38.333, -375, -72.249 )
+polygon = PoolVector2Array( -197.558, -72, -77.5583, -15, 94.9417, -16.6667, 205.45, -75.825, 205.775, -47.5, 121.608, 15, -77.5583, 15.8333, -197.558, -38.3334, -375, -38.333, -375, -72 )
 
 [node name="Platform5" parent="." instance=ExtResource( 3 )]
 position = Vector2( 750, 332 )
@@ -124,10 +112,25 @@ polygon = PoolVector2Array( -110, 0, 165, 0, 165, 105, 317, 105, 317, 195, -110,
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2( 2, 843 )
-polygon = PoolVector2Array( -110, 0, 184, 5, 259, 64, 706, 62, 708, 237, -110, 235 )
+polygon = PoolVector2Array( -110, 0, 185, 0, 260, 64, 700, 64, 700, 240, -110, 240 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PoolVector2Array( 946, 768, 1306, 769, 1303, 838, 1265, 914, 1212, 968, 1166, 1037, 1110, 997, 1030, 942, 975, 887, 952, 840 )
+polygon = PoolVector2Array( 946, 775, 1306, 775, 1303, 838, 1265, 914, 1212, 968, 1166, 1037, 1110, 997, 1030, 942, 975, 887, 952, 840 )
+
+[node name="HealthBars" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_right = 1920.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="DeathScreen" parent="CanvasLayer" instance=ExtResource( 4 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 
 [connection signal="timeout" from="PelletSpawn" to="." method="_on_PelletSpawn_timeout"]
 

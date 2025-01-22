@@ -120,7 +120,10 @@ func _physics_process(_delta):
 			if is_on_floor():
 				$AudioManager.Move()
 		elif on_ladder and (velocity.y < -10 || velocity.y > 10):
-			animatedSprite.play(Anims["Ladder"])
+			if Input.is_action_pressed(Actions["Up"]) || Input.is_action_pressed(Actions["Down"]):
+				animatedSprite.play(Anims["Ladder"])
+			else:
+				animatedSprite.play(Anims["Falling"])
 		else:
 			animatedSprite.play(Anims["Idle"])
 		
@@ -130,7 +133,7 @@ func _physics_process(_delta):
 	# Set falling or jumping animations
 	if not isAttacking:
 		if not on_ladder:
-			if velocity.y > 20 && not is_on_floor():
+			if velocity.y > 200 && not is_on_floor():
 				animatedSprite.play(Anims["Falling"])
 			elif velocity.y < -10 && not is_on_floor():
 				animatedSprite.play(Anims["Jump"])
