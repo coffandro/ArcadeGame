@@ -34,6 +34,7 @@ func _ready():
 		i.id = index
 		index += 1
 	
+	$PelletSpawn.start()
 	StartRound()
 
 func StartRound():
@@ -79,6 +80,7 @@ func PlayerDied(PlayerID:int):
 					player1texture = child.animatedSprite.frames.get_frame("Meelee1", 1)
 
 			$CanvasLayer/DeathScreen.PlayerWon(1, player1texture)
+			$PelletSpawn.stop()
 			for child in get_children():
 				if child.is_in_group("Player"):
 					child.queue_free()
@@ -91,6 +93,7 @@ func PlayerDied(PlayerID:int):
 					player2texture = child.animatedSprite.frames.get_frame("Meelee2", 1)
 
 			$CanvasLayer/DeathScreen.PlayerWon(2, player2texture)
+			$PelletSpawn.stop()
 			for child in get_children():
 				if child.is_in_group("Player"):
 					child.queue_free()

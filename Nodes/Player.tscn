@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Players/Bunny/Bunny.png" type="Texture" id=2]
@@ -34,6 +34,35 @@
 [ext_resource path="res://Art/Players/Bunny/BunnyLadder1.png" type="Texture" id=32]
 [ext_resource path="res://shaders/ShieldShader.tres" type="Material" id=33]
 [ext_resource path="res://icon.png" type="Texture" id=34]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilRun1.png" type="Texture" id=35]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilRun3.png" type="Texture" id=36]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvil.png" type="Texture" id=37]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvil.png" type="Texture" id=38]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilRun2.png" type="Texture" id=39]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilRun1.png" type="Texture" id=40]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilLadder1.png" type="Texture" id=41]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilLadder2.png" type="Texture" id=42]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilLadder1.png" type="Texture" id=43]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilLadder2.png" type="Texture" id=44]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilAttack1.png" type="Texture" id=45]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilAttack3.png" type="Texture" id=46]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilAttack4.png" type="Texture" id=47]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilAttack2.png" type="Texture" id=48]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilAttack5.png" type="Texture" id=49]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilAttack5.png" type="Texture" id=50]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilAttack2.png" type="Texture" id=51]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilAttack6.png" type="Texture" id=52]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilAttack1.png" type="Texture" id=53]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilAttack4.png" type="Texture" id=54]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilAttack3.png" type="Texture" id=55]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilRun2.png" type="Texture" id=56]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilShoot2.png" type="Texture" id=57]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilShoot1.png" type="Texture" id=58]
+[ext_resource path="res://Art/Players/BunnyEvil/BunnyEvilShoot3.png" type="Texture" id=59]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilShoot2.png" type="Texture" id=60]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilShoot1.png" type="Texture" id=61]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilShoot3.png" type="Texture" id=62]
+[ext_resource path="res://Art/Players/HampsterEvil/HampsterEvilShoot4.png" type="Texture" id=63]
 
 [sub_resource type="Shader" id=17]
 code = "shader_type canvas_item;
@@ -124,6 +153,16 @@ animations = [ {
 "name": "Falling2",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 36 ) ],
+"loop": true,
+"name": "FallingE1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 35 ) ],
+"loop": true,
+"name": "FallingE2",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "Idle1",
@@ -132,6 +171,16 @@ animations = [ {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "Idle2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 37 ) ],
+"loop": true,
+"name": "IdleE1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 38 ) ],
+"loop": true,
+"name": "IdleE2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
@@ -144,6 +193,16 @@ animations = [ {
 "name": "Jump2",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 40 ) ],
+"loop": true,
+"name": "JumpE1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 39 ) ],
+"loop": true,
+"name": "JumpE2",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 32 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "Ladder1",
@@ -152,6 +211,16 @@ animations = [ {
 "frames": [ ExtResource( 28 ), ExtResource( 30 ) ],
 "loop": true,
 "name": "Ladder2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 41 ), ExtResource( 42 ) ],
+"loop": true,
+"name": "LadderE1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 43 ), ExtResource( 44 ) ],
+"loop": true,
+"name": "LadderE2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 18 ) ],
@@ -164,14 +233,34 @@ animations = [ {
 "name": "Meelee2",
 "speed": 10.0
 }, {
+"frames": [ ExtResource( 53 ), ExtResource( 51 ), ExtResource( 55 ), ExtResource( 47 ), ExtResource( 50 ), ExtResource( 52 ) ],
+"loop": true,
+"name": "MeeleeE1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 45 ), ExtResource( 48 ), ExtResource( 46 ), ExtResource( 54 ), ExtResource( 49 ) ],
+"loop": true,
+"name": "MeeleeE2",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "Run1",
-"speed": 6.0
+"speed": 7.0
 }, {
 "frames": [ ExtResource( 29 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "Run2",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 40 ), ExtResource( 56 ), ExtResource( 36 ) ],
+"loop": true,
+"name": "RunE1",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 35 ), ExtResource( 39 ) ],
+"loop": true,
+"name": "RunE2",
 "speed": 6.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 13 ) ],
@@ -180,9 +269,19 @@ animations = [ {
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 26 ), ExtResource( 9 ), ExtResource( 25 ), ExtResource( 27 ) ],
-"loop": true,
+"loop": false,
 "name": "Shoot2",
-"speed": 5.0
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 58 ), ExtResource( 57 ), ExtResource( 59 ) ],
+"loop": false,
+"name": "ShootE1",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 61 ), ExtResource( 60 ), ExtResource( 62 ), ExtResource( 63 ) ],
+"loop": false,
+"name": "ShootE2",
+"speed": 10.0
 } ]
 
 [sub_resource type="Animation" id=11]

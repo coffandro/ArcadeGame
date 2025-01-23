@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BunnyRun3.png-65dd8f657bc2001790a253a881d3d6d4.stex"
+path="res://.import/BunnyRun3.png-1d66a0eeff7b1d4ba04fca627ee33ce0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Players/BunnyEvil/BunnyRun3.png"
-dest_files=[ "res://.import/BunnyRun3.png-65dd8f657bc2001790a253a881d3d6d4.stex" ]
+source_file="res://Art/Players/Bunny/BunnyRun3.png"
+dest_files=[ "res://.import/BunnyRun3.png-1d66a0eeff7b1d4ba04fca627ee33ce0.stex" ]
 
 [params]
 

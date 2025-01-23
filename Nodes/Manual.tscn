@@ -1,0 +1,267 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/Manual.gd" type="Script" id=1]
+[ext_resource path="res://ShadowedTextureButton.gd" type="Script" id=2]
+[ext_resource path="res://shaders/DropShadowMat.tres" type="Material" id=3]
+[ext_resource path="res://Art/UI/ButtonBG.png" type="Texture" id=4]
+[ext_resource path="res://Art/MainTheme.tres" type="Theme" id=5]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D/ViewportContainer/Viewport/World/Book/TurnerR:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Node2D/ViewportContainer/Viewport/World/Book/TurnerL:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "TurnLeft"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D/ViewportContainer/Viewport/World/Book/TurnerL:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -180, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "TurnRight"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D/ViewportContainer/Viewport/World/Book/TurnerR:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ) ]
+}
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 10, 0.01, 20 )
+
+[sub_resource type="ViewportTexture" id=7]
+viewport_path = NodePath("Node2D/ViewportContainer/Viewport/UI/Control/Pages/Page0")
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 20, 0.01, 20 )
+
+[node name="Manual" type="Node"]
+script = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/TurnLeft = SubResource( 6 )
+anims/TurnRight = SubResource( 4 )
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = 10
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Node2D"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="Viewport" type="Viewport" parent="Node2D/ViewportContainer"]
+size = Vector2( 1920, 1080 )
+size_override_stretch = true
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="World" type="Spatial" parent="Node2D/ViewportContainer/Viewport"]
+
+[node name="Camera" type="Camera" parent="Node2D/ViewportContainer/Viewport/World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.2 )
+current = true
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Node2D/ViewportContainer/Viewport/World"]
+transform = Transform( 0.862761, -5.14245e-08, 0.505612, -0.168286, 0.942985, 0.287158, -0.476785, -0.332836, 0.81357, 0, 0, 0 )
+
+[node name="Book" type="Spatial" parent="Node2D/ViewportContainer/Viewport/World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9.7 )
+
+[node name="TurnerL" type="Spatial" parent="Node2D/ViewportContainer/Viewport/World/Book"]
+
+[node name="Page" type="MeshInstance" parent="Node2D/ViewportContainer/Viewport/World/Book/TurnerL"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 5, 0, 0 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../../../../../../..")
+
+[node name="Sprite3D" type="Sprite3D" parent="Node2D/ViewportContainer/Viewport/World/Book/TurnerL/Page"]
+transform = Transform( 2.5, 0, 0, 0, -1.09278e-07, -2.5, 0, 2.5, -1.09278e-07, 0, 0.1, 0 )
+texture = SubResource( 7 )
+
+[node name="TurnerR" type="Spatial" parent="Node2D/ViewportContainer/Viewport/World/Book"]
+
+[node name="Page" type="MeshInstance" parent="Node2D/ViewportContainer/Viewport/World/Book/TurnerR"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -5, 0, 0 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../../../../../../..")
+
+[node name="Sprite3D" type="Sprite3D" parent="Node2D/ViewportContainer/Viewport/World/Book/TurnerR/Page"]
+transform = Transform( 2.5, 0, 0, 0, -1.09278e-07, -2.5, 0, 2.5, -1.09278e-07, 0, 0.1, 0 )
+texture = SubResource( 7 )
+
+[node name="Back" type="MeshInstance" parent="Node2D/ViewportContainer/Viewport/World/Book"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../../../../../..")
+
+[node name="UI" type="CanvasLayer" parent="Node2D/ViewportContainer/Viewport"]
+layer = 10
+
+[node name="Control" type="Control" parent="Node2D/ViewportContainer/Viewport/UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+
+[node name="Pages" type="Control" parent="Node2D/ViewportContainer/Viewport/UI/Control"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Page0" type="Viewport" parent="Node2D/ViewportContainer/Viewport/UI/Control/Pages"]
+size = Vector2( 388, 775 )
+
+[node name="BG" type="ColorRect" parent="Node2D/ViewportContainer/Viewport/UI/Control/Pages/Page0"]
+margin_right = 388.0
+margin_bottom = 775.0
+
+[node name="Label" type="Label" parent="Node2D/ViewportContainer/Viewport/UI/Control/Pages/Page0"]
+margin_right = 41.0
+margin_bottom = 14.0
+rect_scale = Vector2( 2, 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "HEWO"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Node2D/ViewportContainer/Viewport/UI/Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -754.0
+margin_top = -180.0
+margin_right = 754.0
+margin_bottom = -68.9999
+alignment = 1
+
+[node name="LeftButton" type="TextureButton" parent="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer"]
+margin_right = 500.0
+margin_bottom = 111.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer/LeftButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -67.0
+margin_top = -27.5
+margin_right = 67.0
+margin_bottom = 27.5
+text = "Left"
+
+[node name="ShadowZindex" type="Node2D" parent="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer/LeftButton"]
+z_index = -1
+
+[node name="Shadow" type="TextureRect" parent="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer/LeftButton/ShadowZindex"]
+material = ExtResource( 3 )
+margin_top = 8.0
+margin_right = 500.0
+margin_bottom = 119.0
+texture = ExtResource( 4 )
+
+[node name="ExitButton" type="TextureButton" parent="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer"]
+margin_left = 504.0
+margin_right = 1004.0
+margin_bottom = 111.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer/ExitButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -59.0
+margin_top = -27.5
+margin_right = 59.0
+margin_bottom = 27.5
+text = "Exit"
+
+[node name="ShadowZindex" type="Node2D" parent="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer/ExitButton"]
+z_index = -1
+
+[node name="Shadow" type="TextureRect" parent="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer/ExitButton/ShadowZindex"]
+material = ExtResource( 3 )
+margin_top = 8.0
+margin_right = 500.0
+margin_bottom = 119.0
+texture = ExtResource( 4 )
+
+[node name="RightButton" type="TextureButton" parent="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer"]
+margin_left = 1008.0
+margin_right = 1508.0
+margin_bottom = 111.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer/RightButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -86.0
+margin_top = -27.5
+margin_right = 86.0
+margin_bottom = 27.5
+text = "Right"
+
+[node name="ShadowZindex" type="Node2D" parent="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer/RightButton"]
+z_index = -1
+
+[node name="Shadow" type="TextureRect" parent="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer/RightButton/ShadowZindex"]
+material = ExtResource( 3 )
+margin_top = 8.0
+margin_right = 500.0
+margin_bottom = 119.0
+texture = ExtResource( 4 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer/LeftButton" to="." method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="Node2D/ViewportContainer/Viewport/UI/Control/HBoxContainer/RightButton" to="." method="_on_RightButton_pressed"]

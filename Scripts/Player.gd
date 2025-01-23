@@ -44,6 +44,41 @@ var Anims = {
 	"Ladder": "Ladder"
 }
 
+var konami_enabled = false
+var konami = []
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not konami_enabled:
+		if (event.is_action_pressed(Actions["Up"]) || event.is_action_pressed(Actions["Down"]) || event.is_action_pressed(Actions["Left"]) || event.is_action_pressed(Actions["Right"]) || event.is_action_pressed(Actions["Attack1"]) || event.is_action_pressed(Actions["Attack2"]) || event.is_action_pressed(Actions["Jump"])):
+			if konami.empty() and event.is_action_pressed(Actions["Up"]):
+				konami.append("Up")
+			elif konami.size() == 1 and konami[0] == "Up" and event.is_action_pressed(Actions["Up"]):
+				konami.append("Up")
+			elif konami.size() == 2 and konami[1] == "Up" and event.is_action_pressed(Actions["Down"]):
+				konami.append("Down")
+			elif konami.size() == 3 and konami[2] == "Down" and event.is_action_pressed(Actions["Down"]):
+				konami.append("Down")
+			elif konami.size() == 4 and konami[3] == "Down" and event.is_action_pressed(Actions["Left"]):
+				konami.append("Left")
+			elif konami.size() == 5 and konami[4] == "Left" and event.is_action_pressed(Actions["Right"]):
+				konami.append("Right")
+			elif konami.size() == 6 and konami[5] == "Right" and event.is_action_pressed(Actions["Left"]):
+				konami.append("Left")
+			elif konami.size() == 7 and konami[6] == "Left" and event.is_action_pressed(Actions["Right"]):
+				konami.append("Right")
+			elif konami.size() == 8 and konami[7] == "Right" and event.is_action_pressed(Actions["Attack1"]):
+				konami.append("Attack1")
+			elif konami.size() == 9 and konami[8] == "Attack1" and event.is_action_pressed(Actions["Attack2"]):
+				konami.append("Attack2")
+			elif konami.size() == 10 and konami[9] == "Attack2" and event.is_action_pressed(Actions["Jump"]):
+				konami_enabled = true
+				print("Did the konami")
+				for i in Anims.keys():
+					Anims[i] = Anims[i].insert(Anims[i].length()-1,"E")
+			else:
+				konami = []
+
+
 func _ready():
 	$Shield.hide()
 
