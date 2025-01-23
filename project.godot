@@ -711,3 +711,8 @@ attack3_p2={
 2d_physics/layer_4="DroppablePlatforms"
 2d_physics/layer_5="Ladders"
 2d_physics/layer_6="Bullets"
+
+[logging]
+
+file_logging/enable_file_logging=true
+file_logging/max_log_files=100
