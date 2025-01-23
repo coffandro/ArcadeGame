@@ -578,8 +578,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="ArcadeGame"
+config/name="Fight For The Forrest"
 run/main_scene="res://Main.tscn"
+boot_splash/image="res://Art/ItchBackground.png"
 config/icon="res://icon.png"
 
 [autoload]
