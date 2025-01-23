@@ -6,6 +6,7 @@ onready var attackPoint = $AttackPoint
 onready var attackCooldown = $AttackCooldown
 onready var healthBars = $"../HealthBars"
 onready var speedShader = $AnimatedSprite.get_material()
+var playerSpawner = null
 
 export var speed := Vector2(400.0, 500.0)
 export var speedBoost := 2
@@ -71,13 +72,23 @@ func _unhandled_input(event: InputEvent) -> void:
 			elif konami.size() == 9 and konami[8] == "Attack1" and event.is_action_pressed(Actions["Attack2"]):
 				konami.append("Attack2")
 			elif konami.size() == 10 and konami[9] == "Attack2" and event.is_action_pressed(Actions["Jump"]):
-				konami_enabled = true
-				print("Did the konami")
-				for i in Anims.keys():
-					Anims[i] = Anims[i].insert(Anims[i].length()-1,"E")
+				enable_Konami()
 			else:
 				konami = []
 
+func enable_Konami():
+	konami_enabled = true
+	print("Did the konami")
+	for i in Anims.keys():
+		print(Anims[i])
+		print(Anims[i].length())
+		Anims[i] = Anims[i].insert(Anims[i].length()-1,"E")
+
+	if not playerSpawner.konami_enabled:
+		if playerNumber == 1:
+			playerSpawner.konami_enabled = true
+		elif playerNumber == 2:
+			playerSpawner.konami_enabled = true
 
 func _ready():
 	$Shield.hide()

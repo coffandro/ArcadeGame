@@ -77,7 +77,10 @@ func PlayerDied(PlayerID:int):
 			var player1texture
 			for child in get_children():
 				if child.is_in_group("Player1"):
-					player1texture = child.animatedSprite.frames.get_frame("Meelee1", 1)
+					if child.konami_enabled:
+						player1texture = child.animatedSprite.frames.get_frame("MeeleeE1", 1)
+					else:
+						player1texture = child.animatedSprite.frames.get_frame("Meelee1", 1)
 
 			$CanvasLayer/DeathScreen.PlayerWon(1, player1texture)
 			$PelletSpawn.stop()
@@ -90,7 +93,10 @@ func PlayerDied(PlayerID:int):
 			var player2texture
 			for child in get_children():
 				if child.is_in_group("Player2"):
-					player2texture = child.animatedSprite.frames.get_frame("Meelee2", 1)
+					if child.konami_enabled:
+						player2texture = child.animatedSprite.frames.get_frame("MeeleeE2", 1)
+					else:
+						player2texture = child.animatedSprite.frames.get_frame("Meelee2", 1)
 
 			$CanvasLayer/DeathScreen.PlayerWon(2, player2texture)
 			$PelletSpawn.stop()
