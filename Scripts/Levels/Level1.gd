@@ -11,6 +11,7 @@ var random = RandomNumberGenerator.new()
 var Songs = [
 	preload("res://Sound/Level1Music/Chiptune Chilled Fun Intensity 1.wav"),
 	preload("res://Sound/Level1Music/Chiptune Chilled Fun Intensity 2.wav"),
+	preload("res://Sound/Level1Music/Chiptune Chilled Fun main.wav"),
 ]
 
 onready var PelletSpawners = [
@@ -71,7 +72,7 @@ func PlayerDied(PlayerID:int):
 		P1Score += 1
 	
 
-	if P1Score > 1 || P2Score > 1: 
+	if P1Score > 1 || P2Score > 1:
 		if P1Score > P2Score:
 			print("Player 1 won")
 			var player1texture

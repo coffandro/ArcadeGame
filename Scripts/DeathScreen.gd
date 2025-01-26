@@ -9,6 +9,7 @@ func _ready():
 	#manual.rootScene = self
 
 func PlayerWon(PlayerNumber, playerTexture):
+	$SelectionTimer.start()
 	show()
 	MusicPlayer.stream = backtrack
 	MusicPlayer.play(15)
@@ -16,8 +17,12 @@ func PlayerWon(PlayerNumber, playerTexture):
 		$WonLabel.text = "Stamper Won!"
 	elif PlayerNumber == 2:
 		$WonLabel.text = "Hamper Won!"
-	$VBoxContainer/CenterContainer3/RestartButton.grab_focus()
 	$PlayerPreview.texture = playerTexture
+
+func _on_SelectionTimer_timeout() -> void:
+	$VBoxContainer/CenterContainer3/RestartButton.grab_focus()
+	$VBoxContainer/CenterContainer3/RestartButton.grab_click_focus()
+	$VBoxContainer/CenterContainer3/RestartButton.select()
 
 func _on_RestartButton_pressed():
 	get_tree().change_scene("res://Levels/Level1.tscn")
