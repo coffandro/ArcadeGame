@@ -8,11 +8,11 @@ uniform vec4 modulate : hint_color;
 
 void fragment() {
 	vec4 input_texture = texture(TEXTURE, UV);
-	float avg = (input_texture.r + input_texture.g + input_texture.b) / 3.0;
+	float avg = (input_texture.r + input_texture.g + input_texture.b);
     COLOR.rgb = vec3(avg);
 	COLOR.a = input_texture.a * modulate.a;
 }"
 
 [resource]
 shader = SubResource( 1 )
-shader_param/modulate = Color( 1, 1, 1, 0.588235 )
+shader_param/modulate = Color( 1, 1, 1, 0.294118 )
