@@ -6,7 +6,6 @@ extends Node
 var Backtrack = preload("res://Sound/MenuMusic/Chiptune Vol2 Lighthearted Chill Main.wav")
 
 func _ready():
-	$UI/VBoxContainer/PlayButton.grab_focus()
 	$"../MusicPlayer".stream = Backtrack
 	$"../MusicPlayer".play()
 	#manual.rootScene = self
@@ -30,3 +29,9 @@ func ConcealManual():
 	# $Background.show()
 	# $Leaves.show()
 	$Camera.current = true
+
+
+func _on_SelectionTimer_timeout() -> void:
+	$UI/VBoxContainer/PlayButton.grab_focus()
+	$UI/VBoxContainer/PlayButton.grab_click_focus()
+	$UI/VBoxContainer/PlayButton.select()
