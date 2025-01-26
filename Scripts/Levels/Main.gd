@@ -14,7 +14,10 @@ func _on_PlayButton_pressed():
 	get_tree().change_scene("res://Levels/Level1.tscn")
 
 func _on_QuitButton_pressed():
-	get_tree().quit()
+	if OS.has_feature("web"):
+		JavaScript.eval("window.history.back();")
+	else:
+		get_tree().quit()
 
 func _on_GuideButton_pressed() -> void:
 	# $UI.set_process_input(false)
