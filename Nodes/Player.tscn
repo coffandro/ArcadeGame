@@ -106,6 +106,7 @@ code = "shader_type canvas_item;
 uniform bool enabled = true;
 uniform float Strength : hint_range(0,100) = 5;
 uniform float RandomOffset = 1.0;
+uniform vec2 affect;
 
 float random( float seed )
 {
@@ -121,14 +122,14 @@ void vertex()
 				( trunc( VERTEX_OFFSET.y))
 			+	TIME
 			) - 0.5
-		) * Strength ;
+		) * Strength * affect.x;
 
 		VERTEX_OFFSET.y += (
 			random(
 				( trunc( VERTEX_OFFSET.x))
 			+	TIME
 			) - 0.5
-		) * Strength;
+		) * Strength * affect.y;
 		
 		VERTEX = VERTEX_OFFSET;	
 	}
@@ -140,6 +141,7 @@ shader = SubResource( 23 )
 shader_param/enabled = false
 shader_param/Strength = 30.0
 shader_param/RandomOffset = 2.5
+shader_param/affect = Vector2( 4, 2 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {

@@ -578,9 +578,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Fight For The Forrest"
+config/name="Fight For The Forest"
 run/main_scene="res://Main.tscn"
 boot_splash/image="res://Art/ItchBackground.png"
+boot_splash/bg_color=Color( 0.92549, 0.784314, 0.764706, 1 )
 config/icon="res://icon.png"
 
 [autoload]

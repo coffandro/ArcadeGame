@@ -23,3 +23,5 @@ func _on_BorderTeleporter_body_entered(body):
 		elif axis == axisEnum.Up:
 			body.global_position.y = 0+relativePosition.y
 			body.global_position.x += relativePosition.x
+	if "Bullet" in body.name:
+		body.queue_free()

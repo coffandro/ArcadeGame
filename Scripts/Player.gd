@@ -80,8 +80,6 @@ func enable_Konami():
 	konami_enabled = true
 	print("Did the konami")
 	for i in Anims.keys():
-		print(Anims[i])
-		print(Anims[i].length())
 		Anims[i] = Anims[i].insert(Anims[i].length()-1,"E")
 
 	if not playerSpawner.konami_enabled:
@@ -228,6 +226,9 @@ func HandleGravity():
 		velocity.y += gravity
 
 func TakeDamage(damage):
+	if currrentPowerUp == "Shield":
+		return
+
 	if playerNumber == 1:
 		$"../".P1Health -= damage
 		healthBars.call(HealthSetFunction, $"../".P1Health)
@@ -279,7 +280,6 @@ func apply_power_up(powerup: int):
 func _on_ShieldTimer_timeout() -> void:
 	$Shield.hide()
 	currrentPowerUp = ""
-
 
 func _on_BoostTimer_timeout() -> void:
 	currrentPowerUp = ""
