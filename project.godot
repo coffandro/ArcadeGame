@@ -603,7 +603,7 @@ version_control_plugin_name="GitAPI"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/BuildScripts/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/build-and-deploy/plugin.cfg" )
 
 [input]
 
