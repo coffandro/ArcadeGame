@@ -6,6 +6,8 @@ var backtrack = preload("res://Sound/MenuMusic/Chiptune Vol2 Lighthearted Chill 
 
 func _ready():
 	hide()
+	if not OS.has_feature("QR"):
+		$QRButton.hide()
 	#manual.rootScene = self
 
 func PlayerWon(PlayerNumber, playerTexture):
