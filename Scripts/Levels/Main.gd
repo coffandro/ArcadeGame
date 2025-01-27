@@ -6,6 +6,10 @@ extends Node
 var Backtrack = preload("res://Sound/MenuMusic/Chiptune Vol2 Lighthearted Chill Main.wav")
 
 func _ready():
+	if OS.has_feature("android") || OS.has_feature("mobile") || OS.has_feature("web_android") || OS.has_feature("web_ios"):
+		$UI.hide()
+		$MobilePopup.popup_centered()
+
 	$"../MusicPlayer".stream = Backtrack
 	$"../MusicPlayer".play()
 	#manual.rootScene = self
