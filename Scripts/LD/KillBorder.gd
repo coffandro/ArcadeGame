@@ -4,4 +4,4 @@ extends Area2D
 
 func _on_BottomBorder_body_entered(body):
 	if "Player" in body.name:
-		$"../".PlayerDied(body.playerNumber)
+		$"../".PlayerDied(body.player_number)

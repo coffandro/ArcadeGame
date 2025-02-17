@@ -25,11 +25,11 @@ texture = ExtResource( 1 )
 
 [node name="PlayerSpawner1" parent="." instance=ExtResource( 11 )]
 position = Vector2( 151, 675 )
-playerNumber = 1
+player_number = 1
 
 [node name="PlayerSpawner2" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1628, 868 )
-playerNumber = 2
+player_number = 2
 
 [node name="PowerPellet" parent="." instance=ExtResource( 12 )]
 position = Vector2( 960, 225 )

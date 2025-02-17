@@ -68,9 +68,9 @@ var MoveSounds3 = [
 var CurrentShootSounds = []
 var CurrentMoveSounds = []
 
-var playerNumber
+var player_number
 
-func SetBus(playerSide):
+func SetSide(playerSide):
 	if playerSide == 1:
 		AttackPlayer.bus = "P1Effects"
 		ShootPlayer.bus = "P1Effects"
@@ -97,7 +97,7 @@ func SetBus(playerSide):
 		
 		CurrentMoveSounds = MoveSounds2
 	
-	playerNumber = playerSide
+	player_number = playerSide
 
 func RandomizePitch():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(AttackPlayer.bus), linear2db(rng.randf_range(0.9, 1.1)))

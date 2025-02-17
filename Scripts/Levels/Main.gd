@@ -1,18 +1,21 @@
 extends Node
 
-#onready var LevelState = get_node("/root/LevelState")
-#onready var manual = get_node("/root/Manual")
-
 var Backtrack = preload("res://Sound/MenuMusic/Chiptune Vol2 Lighthearted Chill Main.wav")
+
+onready var UI = $UI
+onready var mobile_popup = $MobilePopup
+onready var music_player = get_node("/root/MusicPlayer")
+onready var play_button = $UI/VBoxContainer/CenterContainer/PlayButton
 
 func _ready():
 	if OS.has_feature("android") || OS.has_feature("mobile") || OS.has_feature("web_android") || OS.has_feature("web_ios"):
-		$UI.hide()
-		$MobilePopup.popup_centered()
+		UI.hide()
+		mobile_popup.popup_centered()
+		return
 
-	$"../MusicPlayer".stream = Backtrack
-	$"../MusicPlayer".play()
-	#manual.rootScene = self
+	music_player.stream = Backtrack
+	music_player.last_stream = Backtrack
+	music_player.play()
 
 func _on_PlayButton_pressed():
 	get_tree().change_scene("res://Levels/Level1.tscn")
@@ -23,22 +26,7 @@ func _on_QuitButton_pressed():
 	else:
 		get_tree().quit()
 
-func _on_GuideButton_pressed() -> void:
-	# $UI.set_process_input(false)
-	$UI.hide()
-	# $Background.hide()
-	# $Leaves.hide()
-	$Camera.current = false
-	#manual.reveal(true)
-
-func ConcealManual():
-	$UI.show()
-	# $Background.show()
-	# $Leaves.show()
-	$Camera.current = true
-
-
 func _on_SelectionTimer_timeout() -> void:
-	$UI/VBoxContainer/PlayButton.grab_focus()
-	$UI/VBoxContainer/PlayButton.grab_click_focus()
-	$UI/VBoxContainer/PlayButton.select()
+	play_button.grab_focus()
+	play_button.grab_click_focus()
+	play_button.select()

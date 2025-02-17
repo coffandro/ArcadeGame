@@ -1,35 +1,16 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/DeathScreen.gd" type="Script" id=1]
 [ext_resource path="res://Art/MainTheme.tres" type="Theme" id=2]
 [ext_resource path="res://Art/Players/BunnyEvil/BunnyEvil.png" type="Texture" id=3]
 [ext_resource path="res://ShadowedTextureButton.gd" type="Script" id=4]
 [ext_resource path="res://Fonts/Jack Armstrong.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://shaders/DropShadowMat.tres" type="Material" id=6]
 [ext_resource path="res://Art/QR.png" type="Texture" id=7]
 [ext_resource path="res://Art/UI/ButtonBG.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=4]
 size = 128
 font_data = ExtResource( 5 )
-
-[sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.933333, 0.662745, 0.635294, 1 )
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color( 0.866667, 0.305882, 0.219608, 1 )
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-expand_margin_left = 10.0
-expand_margin_right = 10.0
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
 
 [sub_resource type="DynamicFont" id=7]
 size = 32
@@ -103,51 +84,6 @@ margin_right = 126.0
 margin_bottom = 27.5
 text = "Restart"
 
-[node name="ShadowZindex" type="Node2D" parent="VBoxContainer/CenterContainer3/RestartButton"]
-z_index = -1
-
-[node name="Shadow" type="TextureRect" parent="VBoxContainer/CenterContainer3/RestartButton/ShadowZindex"]
-material = ExtResource( 6 )
-margin_top = 8.0
-margin_right = 500.0
-margin_bottom = 119.0
-texture = ExtResource( 8 )
-
-[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
-visible = false
-margin_top = 273.0
-margin_right = 612.0
-margin_bottom = 384.0
-
-[node name="GuideButton" type="TextureButton" parent="VBoxContainer/CenterContainer2"]
-margin_left = 56.0
-margin_right = 556.0
-margin_bottom = 111.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 8 )
-script = ExtResource( 4 )
-
-[node name="Label" type="Label" parent="VBoxContainer/CenterContainer2/GuideButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -208.0
-margin_top = -27.5
-margin_right = 208.0
-margin_bottom = 27.5
-text = "Instructions"
-
-[node name="ShadowZindex" type="Node2D" parent="VBoxContainer/CenterContainer2/GuideButton"]
-z_index = -1
-
-[node name="Shadow" type="TextureRect" parent="VBoxContainer/CenterContainer2/GuideButton/ShadowZindex"]
-material = ExtResource( 6 )
-margin_top = 8.0
-margin_right = 500.0
-margin_bottom = 119.0
-texture = ExtResource( 8 )
-
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
 margin_top = 136.0
 margin_right = 500.0
@@ -171,17 +107,7 @@ margin_right = 61.0
 margin_bottom = 27.5
 text = "Quit"
 
-[node name="ShadowZindex" type="Node2D" parent="VBoxContainer/CenterContainer/QuitButton"]
-z_index = -1
-
-[node name="Shadow" type="TextureRect" parent="VBoxContainer/CenterContainer/QuitButton/ShadowZindex"]
-material = ExtResource( 6 )
-margin_top = 8.0
-margin_right = 500.0
-margin_bottom = 119.0
-texture = ExtResource( 8 )
-
-[node name="QRButton" type="Button" parent="."]
+[node name="QRButton" type="Panel" parent="."]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 60.0
@@ -190,8 +116,6 @@ margin_right = 710.0
 margin_bottom = 460.0
 rect_scale = Vector2( 0.75, 0.75 )
 rect_pivot_offset = Vector2( 300, 400 )
-custom_styles/focus = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="QRButton"]
 anchor_left = 0.5
@@ -228,7 +152,7 @@ text = "Share it with your
 friends!"
 align = 1
 
-[node name="Label3" type="Label" parent="QRButton/VBoxContainer"]
+[node name="WinLabel" type="Label" parent="QRButton/VBoxContainer"]
 margin_top = 680.0
 margin_right = 600.0
 margin_bottom = 757.0
@@ -239,5 +163,4 @@ align = 1
 
 [connection signal="timeout" from="SelectionTimer" to="." method="_on_SelectionTimer_timeout"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer3/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/CenterContainer2/GuideButton" to="." method="_on_GuideButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

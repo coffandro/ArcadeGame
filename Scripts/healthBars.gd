@@ -11,8 +11,8 @@ var P1Score = 0
 var P2Score = 0
 
 func _ready():
-    P1Win.value = 0
-    P2Win.value = 0
+    P1Win.value = 2
+    P2Win.value = 2
 
 func SetP1Health(value:int):
 	P1Health.value = value
@@ -34,5 +34,5 @@ func AddToScore(side):
 	
 	print("P1Score: "+ str(P1Score) +" P2Score: " + str(P2Score))
 	
-	P1Win.value = P1Score
-	P2Win.value = P2Score
+	P1Win.value = 2 - P2Score
+	P2Win.value = 2 - P1Score

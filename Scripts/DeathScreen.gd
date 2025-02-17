@@ -8,16 +8,19 @@ func _ready():
 	hide()
 	if not OS.has_feature("QR"):
 		$QRButton.hide()
+	if not OS.has_feature("windows"):
+		$QRButton/VBoxContainer/WinLabel.hide()
 	#manual.rootScene = self
 
-func PlayerWon(PlayerNumber, playerTexture):
+func PlayerWon(player_number, playerTexture):
 	$SelectionTimer.start()
 	show()
 	MusicPlayer.stream = backtrack
+	MusicPlayer.last_stream = backtrack
 	MusicPlayer.play(15)
-	if PlayerNumber == 1:
+	if player_number == 1:
 		$WonLabel.text = "Stamper Won!"
-	elif PlayerNumber == 2:
+	elif player_number == 2:
 		$WonLabel.text = "Hamper Won!"
 	$PlayerPreview.texture = playerTexture
 

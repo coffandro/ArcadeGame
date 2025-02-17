@@ -57,6 +57,7 @@ func StartRound():
 		roundsPlayed = 0
 	
 	$"../MusicPlayer".stream = Songs[roundsPlayed]
+	$"../MusicPlayer".last_stream = Songs[roundsPlayed]
 	$"../MusicPlayer".play()
 
 func PlayerDied(PlayerID:int):

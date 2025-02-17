@@ -42,7 +42,7 @@ func round_to_dec(num, digit):
 func _on_Pellet_body_entered(body:Node):
 	if not body.is_in_group("Player"):
 		return
-	if body.currrentPowerUp != "":
+	if body.current_power_up != "":
 		return
 	if currentPellet == 1 and body.bullets == 5:
 		return

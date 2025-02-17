@@ -10,9 +10,7 @@ float circle(vec2 position, float radius, float feather)
 	return smoothstep(radius, radius + feather, length(position - vec2(0.5)));
 }
 
-
 void fragment(){
-	
 	float outer = circle(vec2(UV.x, UV.y), 0.35, 0.01);
 	
 	float fade_effect = sin(TIME) * 0.01;
@@ -21,7 +19,6 @@ void fragment(){
 	
 	COLOR = color;
 	COLOR.a -= outer + inner;
-	
 }"
 
 [resource]
