@@ -1,6 +1,7 @@
 extends Node
 
 var Backtrack = preload("res://Sound/MenuMusic/Chiptune Vol2 Lighthearted Chill Main.wav")
+var StartSound = preload("res://Sound/Start.mp3")
 
 onready var UI = $UI
 onready var mobile_popup = $MobilePopup
@@ -18,6 +19,9 @@ func _ready():
 	music_player.play()
 
 func _on_PlayButton_pressed():
+	$StartSoundPlayer.play()
+
+func _on_StartSoundPlayer_finished():
 	get_tree().change_scene("res://Levels/Level1.tscn")
 
 func _on_QuitButton_pressed():

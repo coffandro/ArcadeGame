@@ -8,14 +8,21 @@ onready var MovePlayer = $MovePlayer
 var rng = RandomNumberGenerator.new()
 
 var AttackSounds = [
-	preload("res://Sound/Attack/Melee Attack 001.wav"),
-	preload("res://Sound/Attack/Melee Attack 002.wav"),
-	preload("res://Sound/Attack/Melee Attack 004.wav"),
+	preload("res://Sound/Attack/Melee Attack.mp3"),
+	preload("res://Sound/Attack/Melee Attack 2.mp3"),
+	preload("res://Sound/Attack/Melee Attack 3.mp3"),
+	preload("res://Sound/Attack/Melee Attack 4.mp3"),
+	preload("res://Sound/Attack/Melee Attack 5.mp3"),
+	preload("res://Sound/Attack/Melee Attack 6.mp3"),
+	preload("res://Sound/Attack/Melee Attack 7.mp3"),
+	preload("res://Sound/Attack/Melee Attack 8.mp3"),
+	preload("res://Sound/Attack/Melee Attack 9.mp3"),
+	preload("res://Sound/Attack/Melee Attack 10.mp3"),
 ]
 
 var JumpSounds = [
-	preload("res://Sound/Jump/Dash 001.wav"),
-	preload("res://Sound/Jump/Dash 009.wav"),
+	preload("res://Sound/Jump/Jump.mp3"),
+	preload("res://Sound/Jump/Jump 2.mp3"),
 ]
 
 var ShootSounds = [
@@ -106,7 +113,7 @@ func Attack():
 	rng.randomize()
 	RandomizePitch()
 	
-	var sound = rng.randi_range(1,3)
+	var sound = rng.randi_range(1, AttackSounds.size())
 	
 	AttackPlayer.stream = AttackSounds[sound-1]
 	AttackPlayer.play()
@@ -115,7 +122,7 @@ func Shoot():
 	rng.randomize()
 	RandomizePitch()
 	
-	var sound = rng.randi_range(1,4)
+	var sound = rng.randi_range(1,CurrentShootSounds.size())
 	
 	ShootPlayer.stream = CurrentShootSounds[sound-1]
 	ShootPlayer.play()
@@ -124,7 +131,7 @@ func Jump():
 	rng.randomize()
 	RandomizePitch()
 	
-	var sound = rng.randi_range(1,2)
+	var sound = rng.randi_range(1,JumpSounds.size())
 	
 	JumpPlayer.stream = JumpSounds[sound-1]
 	JumpPlayer.play()
@@ -132,7 +139,7 @@ func Jump():
 func Move():
 	rng.randomize()
 	
-	var sound = rng.randi_range(1,9)
+	var sound = rng.randi_range(1,CurrentMoveSounds.size())
 	
 	if !MovePlayer.playing:
 		MovePlayer.stream = CurrentMoveSounds[sound-1]

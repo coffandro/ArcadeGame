@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Melee Attack.mp3-9abe56991875966d0dde2789e195a5e6.mp3str"
+
+[deps]
+
+source_file="res://Sound/Attack/Melee Attack.mp3"
+dest_files=[ "res://.import/Melee Attack.mp3-9abe56991875966d0dde2789e195a5e6.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

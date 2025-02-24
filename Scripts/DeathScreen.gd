@@ -2,7 +2,7 @@ extends ColorRect
 
 onready var MusicPlayer = get_node("/root/MusicPlayer")
 #onready var manual = get_node("/root/Manual")
-var backtrack = preload("res://Sound/MenuMusic/Chiptune Vol2 Lighthearted Chill Main.wav")
+var backtrack = preload("res://Sound/Music/Death.mp3")
 
 func _ready():
 	hide()
@@ -37,13 +37,3 @@ func _on_QuitButton_pressed():
 		JavaScript.eval("window.history.back();")
 	else:
 		get_tree().quit()
-
-func _on_GuideButton_pressed() -> void:
-	# get_parent().get_parent().hide()
-	hide()
-	
-	#manual.reveal(true)
-
-func ConcealManual():
-	# get_parent().get_parent().show()
-	show()

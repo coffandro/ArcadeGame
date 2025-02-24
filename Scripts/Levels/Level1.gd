@@ -8,11 +8,7 @@ var roundsPlayed = 0
 
 var random = RandomNumberGenerator.new()
 
-var Songs = [
-	preload("res://Sound/Level1Music/Chiptune Chilled Fun Intensity 1.wav"),
-	preload("res://Sound/Level1Music/Chiptune Chilled Fun Intensity 2.wav"),
-	preload("res://Sound/Level1Music/Chiptune Chilled Fun main.wav"),
-]
+var Song = preload("res://Sound/Music/Level.mp3")
 
 onready var PelletSpawners = [
 	$PowerPellet,
@@ -36,6 +32,11 @@ func _ready():
 		index += 1
 	
 	$PelletSpawn.start()
+	
+	$"../MusicPlayer".stream = Song
+	$"../MusicPlayer".last_stream = Song
+	$"../MusicPlayer".play()
+	
 	StartRound()
 
 func StartRound():
@@ -55,10 +56,6 @@ func StartRound():
 	
 	if roundsPlayed > 2:
 		roundsPlayed = 0
-	
-	$"../MusicPlayer".stream = Songs[roundsPlayed]
-	$"../MusicPlayer".last_stream = Songs[roundsPlayed]
-	$"../MusicPlayer".play()
 
 func PlayerDied(PlayerID:int):
 	roundsPlayed += 1
@@ -80,9 +77,9 @@ func PlayerDied(PlayerID:int):
 			for child in get_children():
 				if child.is_in_group("Player1"):
 					if child.konami_enabled:
-						player1texture = child.animatedSprite.frames.get_frame("MeeleeE1", 1)
+						player1texture = child.animated_sprite.frames.get_frame("MeeleeE1", 1)
 					else:
-						player1texture = child.animatedSprite.frames.get_frame("Meelee1", 1)
+						player1texture = child.animated_sprite.frames.get_frame("Meelee1", 1)
 
 			$CanvasLayer/DeathScreen.PlayerWon(1, player1texture)
 			$PelletSpawn.stop()
@@ -96,9 +93,9 @@ func PlayerDied(PlayerID:int):
 			for child in get_children():
 				if child.is_in_group("Player2"):
 					if child.konami_enabled:
-						player2texture = child.animatedSprite.frames.get_frame("MeeleeE2", 1)
+						player2texture = child.animated_sprite.frames.get_frame("MeeleeE2", 1)
 					else:
-						player2texture = child.animatedSprite.frames.get_frame("Meelee2", 1)
+						player2texture = child.animated_sprite.frames.get_frame("Meelee2", 1)
 
 			$CanvasLayer/DeathScreen.PlayerWon(2, player2texture)
 			$PelletSpawn.stop()
@@ -111,7 +108,6 @@ func PlayerDied(PlayerID:int):
 
 func add_to_current_pelletspawners(spawner):
 	CurrentPelletSpawners.append(spawner)
-
 
 func _on_PelletSpawn_timeout() -> void:
 	if CurrentPelletSpawners.size() > 0:
