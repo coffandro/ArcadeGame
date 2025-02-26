@@ -14,6 +14,10 @@ func _ready():
 
 func PlayerWon(player_number, playerTexture):
 	$SelectionTimer.start()
+	$ButtonCooldown.start()
+	$RedirectionTimer.start()
+	$VBoxContainer/CenterContainer3/RestartButton.disabled = true
+	$VBoxContainer/CenterContainer/QuitButton.disabled = true
 	show()
 	MusicPlayer.stream = backtrack
 	MusicPlayer.last_stream = backtrack
@@ -37,3 +41,10 @@ func _on_QuitButton_pressed():
 		JavaScript.eval("window.history.back();")
 	else:
 		get_tree().quit()
+
+func _on_ButtonCooldown_timeout():
+	$VBoxContainer/CenterContainer3/RestartButton.disabled = false
+	$VBoxContainer/CenterContainer/QuitButton.disabled = false
+
+func _on_RedirectionTimer_timeout():
+	get_tree().change_scene("res://Main.tscn")

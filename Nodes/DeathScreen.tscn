@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/DeathScreen.gd" type="Script" id=1]
 [ext_resource path="res://Art/MainTheme.tres" type="Theme" id=2]
 [ext_resource path="res://Art/Players/BunnyEvil/BunnyEvil.png" type="Texture" id=3]
 [ext_resource path="res://ShadowedTextureButton.gd" type="Script" id=4]
 [ext_resource path="res://Fonts/Jack Armstrong.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Art/UI/ButtonBGDisabled.png" type="Texture" id=6]
 [ext_resource path="res://Art/QR.png" type="Texture" id=7]
 [ext_resource path="res://Art/UI/ButtonBG.png" type="Texture" id=8]
 
@@ -25,6 +26,14 @@ script = ExtResource( 1 )
 
 [node name="SelectionTimer" type="Timer" parent="."]
 wait_time = 0.05
+one_shot = true
+
+[node name="ButtonCooldown" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="RedirectionTimer" type="Timer" parent="."]
+wait_time = 60.0
 one_shot = true
 
 [node name="PlayerPreview" type="TextureRect" parent="."]
@@ -71,6 +80,7 @@ margin_right = 500.0
 margin_bottom = 111.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 8 )
+texture_disabled = ExtResource( 6 )
 script = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="VBoxContainer/CenterContainer3/RestartButton"]
@@ -94,6 +104,7 @@ margin_right = 500.0
 margin_bottom = 111.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 8 )
+texture_disabled = ExtResource( 6 )
 script = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="VBoxContainer/CenterContainer/QuitButton"]
@@ -162,5 +173,7 @@ to screenshot)"
 align = 1
 
 [connection signal="timeout" from="SelectionTimer" to="." method="_on_SelectionTimer_timeout"]
+[connection signal="timeout" from="ButtonCooldown" to="." method="_on_ButtonCooldown_timeout"]
+[connection signal="timeout" from="RedirectionTimer" to="." method="_on_RedirectionTimer_timeout"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer3/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
